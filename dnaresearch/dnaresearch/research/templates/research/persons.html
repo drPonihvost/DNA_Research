@@ -1,5 +1,5 @@
 {% extends 'research/base.html' %}
-
+{% load research_tags %}
 {% block title %}Лица в наравлении{% endblock %}
 
 {% block content %}
@@ -22,6 +22,7 @@
             </tr>
          </thead>
          <tbody style="vertical-align: top;">
+         {% get_persons research_id as persons %}
             {% if persons %}
             {% for person in persons %}
             <tr>

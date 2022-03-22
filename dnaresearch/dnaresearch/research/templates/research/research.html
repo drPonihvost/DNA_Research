@@ -1,5 +1,5 @@
 {% extends 'research/base.html' %}
-
+{% load research_tags %}
 {% block title %}Журнал{% endblock %}
 
 {% block content %}
@@ -19,6 +19,7 @@
             </tr>
          </thead>
          <tbody style="vertical-align: top;">
+         {% get_all_research as researches %}
             {% if researches %}
                {% for research in researches %}
                <tr>

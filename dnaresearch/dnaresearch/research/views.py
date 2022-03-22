@@ -4,8 +4,7 @@ from .services import *
 
 
 def register(request):
-    researches = get_all_research()
-    return render(request, 'research/research.html', {'researches': researches})
+    return render(request, 'research/research.html')
 
 
 def research(request, research_id):
@@ -13,10 +12,8 @@ def research(request, research_id):
 
 
 def persons(request, research_id):
-    persons_ = get_person_by_research_id(research_id)
     context = {
-        'research_id': research_id,
-        'persons': persons_
+        'research_id': research_id
     }
     return render(request, 'research/persons.html', context=context)
 
