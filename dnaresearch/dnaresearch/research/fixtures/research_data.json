@@ -1,0 +1,108 @@
+[
+  {
+    "model": "research.Research",
+    "pk": 1,
+    "fields": {
+      "reg_number": 181,
+      "initiator_department": "МВД России по Республике Хакасия",
+      "initiator_post": "Начальник УУР",
+      "initiator_rank": "полковник полиции",
+      "initiator_surname": "Кунстман",
+      "initiator_name": "Александр",
+      "initiator_patronymic": "Викторович",
+      "executor_department": "МВД России по Республике Хакасия",
+      "executor_post": "Оперуполномоченный УУР",
+      "executor_rank": "капитан полиции",
+      "executor_surname": "Пупкин",
+      "executor_name": "Василий",
+      "executor_patronymic": "Васильевич",
+      "event_number": "у/д № 11201950002000008",
+      "formation_date": "2021-06-28",
+      "article": "158",
+      "plot": "Кража имущества принадлежащего Васильеву А.А. с проникновением  жилище",
+      "incident_date": "2021-06-25",
+      "address": "г. Абакан, ул. Вяткина, д. 17, кв. 42",
+      "date_of_record": "2021-07-15",
+      "reg_date": "2021-07-15"
+    }
+  },
+  {
+    "model": "research.Research",
+    "pk": 2,
+    "fields": {
+      "reg_number": 182,
+      "initiator_department": "МВД России по Республике Хакасия",
+      "initiator_post": "Начальник УУР",
+      "initiator_rank": "полковник полиции",
+      "initiator_surname": "Кунстман",
+      "initiator_name": "Александр",
+      "initiator_patronymic": "Викторович",
+      "executor_department": "МВД России по Республике Хакасия",
+      "executor_post": "Оперуполномоченный УУР",
+      "executor_rank": "капитан полиции",
+      "executor_surname": "Пупкин",
+      "executor_name": "Василий",
+      "executor_patronymic": "Васильевич",
+      "event_number": "у/д № 12201950002000045",
+      "formation_date": "2022-02-18",
+      "article": "161",
+      "plot": "Разбойное нападение на Викторова А.С.",
+      "incident_date": "2022-02-17",
+      "address": "г. Абакан, ул. Кирова, д. 43",
+      "date_of_record": "2022-02-22",
+      "reg_date": "2022-02-22"
+    }
+  },
+  {
+    "model": "research.Person",
+    "pk": 1,
+    "fields": {
+      "surname": "Иванов",
+      "name": "Иван",
+      "patronymic": "Иванович",
+      "male": true,
+      "birthday": "1978-02-15",
+      "birthplace": "г. Абакан Красноярского края",
+      "research_id": 1
+    }
+  },
+  {
+    "model": "research.Person",
+    "pk": 2,
+    "fields": {
+      "surname": "Петров",
+      "name": "Сергей",
+      "patronymic": "Валерьевич",
+      "male": true,
+      "birthday": "1999-03-17",
+      "birthplace": "г. Новосибирск",
+      "research_id": 1
+    }
+  },
+  {
+    "model": "research.Person",
+    "pk": 3,
+    "fields": {
+      "surname": "Хвостов",
+      "name": "Виктор",
+      "patronymic": "Петрович",
+      "male": true,
+      "birthday": "1988-11-26",
+      "birthplace": "г. Абакан Красноярского края",
+      "research_id": 1
+    }
+  },
+  {
+    "model": "research.Person",
+    "pk": 4,
+    "fields": {
+      "surname": "Польский",
+      "name": "Иван",
+      "patronymic": "Алексеевич",
+      "male": true,
+      "birthday": "1985-05-01",
+      "birthplace": "г. Томск",
+      "research_id": 2
+    }
+  }
+]
