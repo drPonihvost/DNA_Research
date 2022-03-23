@@ -1,5 +1,7 @@
 from django.http import HttpResponse, HttpResponseNotFound
 from django.shortcuts import render
+
+from .foms import AddPerson
 from .services import *
 
 
@@ -23,6 +25,11 @@ def all_persons(request):
         'persons': get_all_persons()
     }
     return render(request, 'research/all_persons.html', context=context)
+
+
+def add_person(request):
+    form = AddPerson()
+    return render(request, 'research/add_person.html', {'form': form})
 
 
 def pageNotFound(request, exception):
