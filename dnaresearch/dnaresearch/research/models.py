@@ -31,20 +31,21 @@ class Research(models.Model):
         verbose_name_plural = 'Исследования'
 
     def __str__(self):
-        if self.reg_number:
-            return f'{self.reg_number} от {self.reg_date}'
-        else:
-            return f'На регистрацию от {self.date_of_record}'
+        return self.reg_number
 
     def get_absolute_url(self):
         return reverse('persons', kwargs={'research_id': self.pk})
 
 
 class Person(models.Model):
-    surname = models.CharField(max_length=255)
+    choice_gender = (
+        (1, 'Мужской'),
+        (0, 'Женский')
+    )
+    surname = models.CharField(max_length=255, verbose_name='Фамилия')
     name = models.CharField(max_length=255)
     patronymic = models.CharField(max_length=255)
-    male = models.BooleanField()
+    male = models.BooleanField(choices=choice_gender)
     birthday = models.DateField()
     birthplace = models.TextField()
     relation = models.CharField(max_length=255, blank=True, null=True, default=None)

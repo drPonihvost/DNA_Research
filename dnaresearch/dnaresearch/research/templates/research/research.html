@@ -19,9 +19,8 @@
             </tr>
          </thead>
          <tbody style="vertical-align: top;">
-         {% get_all_research as researches %}
-            {% if researches %}
-               {% for research in researches %}
+            {% if object_list %}
+               {% for research in object_list %}
                <tr>
                   <th scope="row" style="vertical-align: middle;">
                      <input type="checkbox" class="form-check-input" value="{{ research.id }}">

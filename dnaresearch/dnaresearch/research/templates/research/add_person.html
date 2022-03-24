@@ -1,9 +1,16 @@
 {% extends 'research/base.html' %}
 
 {% block content %}
-   <form action="{% url 'add_person' %}" method="post">
-       {% csrf_token %}
-       {{ form.as_p }}
-       <button type="submit">Добавить</button>
+<div class="container-fluid">
+   <form action="{{ get_absolute_url }}" method="post">
+      {% csrf_token %}
+      {% for f in form %}
+      <div class="col-4">
+         <label class="form-label" for="{{ f.id_for_label }}">{{ f.label }}: </label>
+         {{ f }}
+      </div>
+      {% endfor %}
+      <button type="submit" class="btn btn-primary">Добавить</button>
    </form>
+</div>
 {% endblock %}

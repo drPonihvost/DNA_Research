@@ -1,12 +1,17 @@
 from django.http import HttpResponse, HttpResponseNotFound
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.views.generic import ListView
 
 from .foms import AddPerson
 from .services import *
 
+class ResearchRegister(ListView):
+    model = Research
+    template_name = 'research/research.html'
 
-def register(request):
-    return render(request, 'research/research.html')
+
+# def register(request):
+#     return render(request, 'research/research.html')
 
 
 def research(request, research_id):
@@ -27,8 +32,17 @@ def all_persons(request):
     return render(request, 'research/all_persons.html', context=context)
 
 
-def add_person(request):
-    form = AddPerson()
+def add_person(request, research_id):
+    if request.method == 'POST':
+        form = AddPerson(request.POST)
+        if form.is_valid():
+            try:
+                Person.objects.create(**form.cleaned_data, research_id=research_id)
+                return redirect('persons', research_id)
+            except:
+                form.add_error(None, 'Ошибка добавления')
+    else:
+        form = AddPerson()
     return render(request, 'research/add_person.html', {'form': form})
 
 

@@ -2,11 +2,21 @@ from django import forms
 from .models import *
 
 
-class AddPerson(forms.Form):
-    surname = forms.CharField(max_length=255)
-    name = forms.CharField(max_length=255)
-    patronymic = forms.CharField(max_length=255)
-    male = forms.BooleanField()
-    birthday = forms.DateField()
-    birthplace = forms.DateField()
-    relation = forms.CharField(max_length=255)
+GENDER_MALE = 1
+GENDER_FEMALE = 0
+CHOICE_GENDER = ((GENDER_MALE, 'Мужской'), (GENDER_FEMALE, 'Женский'))
+
+
+class AddPerson(forms.ModelForm):
+    class Meta:
+        model = Person
+        fields = ['surname', 'name', 'patronymic', 'male', 'birthday', 'birthplace', 'relation']
+        widgets = {
+            'surname': forms.TextInput(attrs={'class': 'form-control'}),
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'patronymic': forms.TextInput(attrs={'class': 'form-control'}),
+            'male': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
+            'birthday': forms.DateInput(attrs={'class': 'form-control', 'input-type': 'text'}),
+            'birthplace': forms.TextInput(attrs={'class': 'form-control'}),
+            'relation': forms.TextInput(attrs={'class': 'form-control'})
+        }
