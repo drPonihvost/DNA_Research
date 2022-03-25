@@ -34,18 +34,14 @@ class Research(models.Model):
         return self.reg_number
 
     def get_absolute_url(self):
-        return reverse('persons', kwargs={'research_id': self.pk})
+        return reverse('research', kwargs={'research_id': self.pk})
 
 
 class Person(models.Model):
-    choice_gender = (
-        (1, 'Мужской'),
-        (0, 'Женский')
-    )
     surname = models.CharField(max_length=255, verbose_name='Фамилия')
     name = models.CharField(max_length=255)
     patronymic = models.CharField(max_length=255)
-    male = models.BooleanField(choices=choice_gender)
+    male = models.BooleanField()
     birthday = models.DateField()
     birthplace = models.TextField()
     relation = models.CharField(max_length=255, blank=True, null=True, default=None)
@@ -58,3 +54,6 @@ class Person(models.Model):
 
     def __str__(self):
         return f'{self.surname} {self.name} {self.patronymic} {self.birthday} г.р.'
+
+    def get_absolute_url(self):
+        return reverse('persons', kwargs={'research_id': self.research.primary_key})

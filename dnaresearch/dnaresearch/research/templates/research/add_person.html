@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="container-fluid">
-   <form action="{{ get_absolute_url }}" method="post">
+   <form action="{{ path }}" method="post">
       {% csrf_token %}
       {% for f in form %}
       <div class="col-4">
