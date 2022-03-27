@@ -56,4 +56,4 @@ class Person(models.Model):
         return f'{self.surname} {self.name} {self.patronymic} {self.birthday} г.р.'
 
     def get_absolute_url(self):
-        return reverse('persons', kwargs={'research_id': self.research.primary_key})
+        return reverse('person', kwargs={'research_id': self.research.primary_key, 'person_id': self.pk})
