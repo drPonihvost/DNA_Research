@@ -1,13 +1,18 @@
 {% extends 'research/base.html' %}
 {% block title %}Журнал{% endblock %}
+{% block command %}
+<a class="btn btn-primary" href="{% url 'all_persons' %}" role="button">Добавить</a>
+<a class="btn btn-primary mx-4" href="{% url 'all_persons' %}" role="button">Сканировать</a>
+<a class="btn btn-primary" href="{% url 'all_persons' %}" role="button">Экспорт</a>
+{% endblock %}
 
 {% block content %}
 <div class="container-fluid">
    <div class="row">
       <div class="col-12">
-         <table class="table table-bordered" style="text-align: center; line-height: 1; vertical-align: middle;">
+         <table class="table table-bordered table-sm lh-1 align-middle">
             <thead>
-               <tr style="text-align: center;">
+               <tr>
                   <th scope="col">Выбор</th>
                   <th scope="col">Номер исследования</th>
                   <th scope="col">Дата регистрации</th>
@@ -18,11 +23,11 @@
                   <th scope="col">Действия</th>
                </tr>
             </thead>
-            <tbody style="vertical-align: top;">
+            <tbody>
                {% if researches %}
                   {% for research in researches %}
                   <tr>
-                     <th scope="row" style="vertical-align: middle;">
+                     <th class="text-center" scope="row">
                         <input type="checkbox" class="form-check-input" value="{{ research.id }}">
                      </th>
                      <td>{{ research.reg_number }}</td>
