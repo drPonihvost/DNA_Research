@@ -1,18 +1,23 @@
 from django import template
-from research.models import *
+from research import models
 
 register = template.Library()
 
 
 @register.simple_tag()
 def get_all_research():
-    return Research.objects.all()
+    return models.Research.objects.all()
 
 
 @register.simple_tag()
 def get_persons(research_id=None):
     if not research_id:
-        return Person.objects.all()
+        return models.Person.objects.all()
     else:
-        return Person.objects.filter(research_id=research_id)
+        return models.Person.objects.filter(research_id=research_id)
+
+
+@register.simple_tag()
+def get_person_count(research_id):
+    return models.Person.objects.filter(research_id=research_id).count()
 
