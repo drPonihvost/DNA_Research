@@ -16,7 +16,7 @@ class Researches(ListView):
 
 class Research(DetailView):
     model = models.Research
-    template_name = 'research/research.html'
+    template_name = 'research/research_info.html'
 
 
 class Persons(ListView):
