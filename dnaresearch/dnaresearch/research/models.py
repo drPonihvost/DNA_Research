@@ -36,6 +36,9 @@ class Research(models.Model):
     def get_absolute_url(self):
         return reverse('research_detail', kwargs={'research_id': self.pk})
 
+    def get_url_for_persons(self):
+        return reverse('persons', kwargs={'research_id': self.pk})
+
 
 class Person(models.Model):
     surname = models.CharField(max_length=255, verbose_name='Фамилия')
@@ -57,3 +60,5 @@ class Person(models.Model):
 
     def get_absolute_url(self):
         return reverse('person', kwargs={'research_id': self.research.primary_key, 'person_id': self.pk})
+
+    
