@@ -16,7 +16,8 @@ class Researches(ListView):
 
 class Research(DetailView):
     model = models.Research
-    template_name = 'research/research.html'
+    template_name = 'research/research_detail.html'
+    pk_url_kwarg = 'research_id'
 
 
 class Persons(ListView):

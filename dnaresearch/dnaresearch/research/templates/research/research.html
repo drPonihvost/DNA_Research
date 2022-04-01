@@ -1,24 +1,29 @@
 {% extends 'research/base.html' %}
+{% load research_tags %}
 {% block title %}Журнал{% endblock %}
 {% block command %}
-<a class="btn btn-primary" href="{% url 'all_persons' %}" role="button">Добавить</a>
-<a class="btn btn-primary mx-4" href="{% url 'all_persons' %}" role="button">Сканировать</a>
-<a class="btn btn-primary" href="{% url 'all_persons' %}" role="button">Экспорт</a>
+<a class="btn btn-primary" href="#" role="button">Добавить</a>
+<a class="btn btn-primary mx-2" href="#" role="button">Сканировать</a>
+<a class="btn btn-primary" href="#" role="button">Экспорт</a>
 {% endblock %}
 
 {% block content %}
 <div class="container-fluid">
    <div class="row">
-      <div class="col-12">
-         <table class="table table-bordered table-sm lh-1 align-middle">
-            <thead>
+      <div class="col-12 table-responsive">
+         <table class="table table-striped table-sm align-middle lh-1 my-2">
+            <thead class="text-center">
                <tr>
                   <th scope="col">Выбор</th>
-                  <th scope="col">Номер исследования</th>
-                  <th scope="col">Дата регистрации</th>
-                  <th scope="col">Сведения об инициаторе исследования</th>
-                  <th scope="col">№ уголовного дела (материалы проверки), вид перступления (правонарушения)</th>
-                  <th scope="col">Дата и адрес совершения перступления (правонарушения)</th>
+                  <th scope="col">Дата</th>
+                  <th scope="col">Номер</th>
+                  <th class="d-none d-lg-table-cell" scope="col">Сведения об инициаторе исследования</th>
+                  <th scope="col">
+                     <span class="d-xs-table-cell d-lg-none">№ материалов</span>
+                     <span class="d-none d-lg-table-cell d-xl-none">№ материалов, ст. УК РФ</span>
+                     <span class="d-none d-xl-table-cell">№ материалов, ст. УК РФ, вид перступления (правонарушения)</span>
+                  </th>
+                  <th class="d-none d-lg-table-cell" scope="col">Дата и адрес совершения перступления (правонарушения)</th>
                   <th scope="col">Количество образцов</th>
                   <th scope="col">Действия</th>
                </tr>
@@ -30,31 +35,29 @@
                      <th class="text-center" scope="row">
                         <input type="checkbox" class="form-check-input" value="{{ research.id }}">
                      </th>
-                     <td>{{ research.reg_number }}</td>
-                     <td>{{ research.reg_date }}</td>
-                     <td>
-                        <p>{{ research.initiator_post }} {{ research.initiator_department }}<br>
-                        {{ research.initiator_rank }}<br>
-                        {{ research.initiator_name.0|upper }}.{{ research.initiator_patronymic.0|upper }}. {{ research.initiator_surname|title }}</p>
+                     <td>{{ research.reg_date|date:"d.m.Y" }}</td>
+                     <td class=" d-table-cell text-center">{{ research.reg_number }}</td>
+                     <td class="d-none d-lg-table-cell">
+                        <p class="my-0 d-none d-xl-inline-block">{{ research.initiator_post }} {{ research.initiator_department }}</p>
+                        <p class="my-0 d-none d-xxl-inline-block">{{ research.initiator_rank }}</p>
+                        <p class="my-0">{{ research.initiator_name.0|upper }}.{{ research.initiator_patronymic.0|upper }}. {{ research.initiator_surname|title }}</p>
                      </td>
-                     <td>
-                        <p>
-                           {{ research.event_number }}<br>
-                           ст. {{ research.article }}<br>
-                           {{ research.plot }}
-                        </p>
+                     <td class="d-table-cell">
+                        <p class="d-table-inline-block my-0 text-nowrap">{{ research.event_number }}</p>
+                        <p class="d-none d-lg-inline-block my-0">ст. {{ research.article }}</p>
+                        <p class="d-none d-xl-inline-block my-0">{{ research.plot }}</p>
                      </td>
-                     <td>
-                        <p>
-                           {{ research.incident_date }}<br>
-                           {{ research.address }}
-                        </p>
+                     <td class="d-none d-lg-table-cell">
+                        <p class="my-0">{{ research.incident_date|date:"d.m.Y" }}</p>
+                        <p class="my-0">{{ research.address }}</p>
                      </td>
-                     <td></td>
+                     <td class="text-center">{% get_person_count research_id=research.id %}</td>
                      <td>
                         <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                           <a href="#" class="btn btn-primary">Редактировать</a>
-                           <a href="{{ research.get_absolute_url }}/person" class="btn btn-primary">Просмотр лиц</a>
+                           <a href="#" class="btn btn-primary">Зарегистрировать</a>
+                           <a href="{{ research.get_absolute_url }}" class="btn btn-primary">Подробнее</a>
+                           <a href="#" class="btn btn-danger">Удалить</a>
+                           <a href="{{ research.get_absolute_url }}/person" class="btn btn-primary">Лица</a>
                         </div>
                      </td>
                   </tr>

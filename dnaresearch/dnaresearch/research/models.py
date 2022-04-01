@@ -34,7 +34,7 @@ class Research(models.Model):
         return self.reg_number
 
     def get_absolute_url(self):
-        return reverse('research', kwargs={'research_id': self.pk})
+        return reverse('research_detail', kwargs={'research_id': self.pk})
 
 
 class Person(models.Model):
