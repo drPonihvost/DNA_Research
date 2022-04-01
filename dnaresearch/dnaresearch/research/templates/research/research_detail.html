@@ -27,10 +27,12 @@
                             {% else %}
                             <h6 class="text-warning">Не зарегистрировано</h6>
                             {% endif  %}
-                            
                         </div>
                         <div class="col-12 col-md-4">
-                            <h5 class="text-warning">Исполнено:</h5>
+                            <h5>Количество образцов:</h5>
+                            <a href="{{ object.get_url_for_persons }}">
+                                <h6 >{% get_person_count research_id=object.id %}</h6>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -67,9 +69,31 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="card-title">Информация о происшествии</h5>
+                    <h5 class="card-title text-primary">Информация о событии</h5>
                 </div>
                 <div class="card-body">
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            <h5>Основание:</h5>
+                            <h6>{{ object.event_number }}</h6>
+                            <h6> от {{ object.formation_date|date:"d.m.Y" }}</h6>
+                            <h5>ст. УК РФ: {{ object.article }}</h5>
+                            <h5>Родственный поиск: 
+                                {% if object.relative_search %}
+                                Да
+                                {% else %}
+                                Нет
+                                {% endif %}</h5>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <h5>Происшествие:</h5>
+                            <h6>{{ object.plot }}</h6>
+                            <h5>Дата происшествия:</h5>
+                            <h6>{{ object.incident_date }}</h6>
+                            <h5>Место происшествия:</h5>
+                            <h6>{{ object.address }}</h6>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
