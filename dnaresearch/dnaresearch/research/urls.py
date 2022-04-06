@@ -4,6 +4,7 @@ from .views import *
 
 urlpatterns = [
     path('research', Researches.as_view(), name='register'),
+    path('research/add', ResearchForm.as_view(), name='research_form'),
     path('research/<int:research_id>', Research.as_view(), name='research_detail'),
     path('research/<int:research_id>/person', persons, name='persons'),
     path('research/<int:research_id>/person/<int:person_id>', Person.as_view(), name='person'),

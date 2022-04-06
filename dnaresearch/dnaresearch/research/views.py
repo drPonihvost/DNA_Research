@@ -1,3 +1,4 @@
+from pyexpat import model
 from django.http import HttpResponse, HttpResponseNotFound
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
@@ -20,6 +21,13 @@ class Research(DetailView):
     pk_url_kwarg = 'research_id'
 
 
+class ResearchForm(CreateView):
+    model = models.Research
+    form_class = forms.AddResearch
+    template_name = 'research/research_form.html'   
+    success_url = 'research'
+
+
 class Persons(ListView):
     model = models.Person
     template_name = 'research/all_persons.html'
@@ -31,9 +39,6 @@ class Person(DetailView):
     template_name = 'research/research.html'
     pk_url_kwarg = 'person_id'
 
-
-def research(request, research_id):
-    return render(request, 'research/base.html', {'title': f'Исследование № {research_id}'})
 
 
 def persons(request, research_id):

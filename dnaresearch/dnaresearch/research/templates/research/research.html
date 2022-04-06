@@ -2,7 +2,7 @@
 {% load research_tags %}
 {% block title %}Журнал{% endblock %}
 {% block command %}
-<a class="btn btn-primary" href="#" role="button">Добавить</a>
+<a class="btn btn-primary" href="{% url 'research_form' %}" role="button">Добавить</a>
 <a class="btn btn-primary mx-2" href="#" role="button">Сканировать</a>
 <a class="btn btn-primary" href="#" role="button">Экспорт</a>
 {% endblock %}
