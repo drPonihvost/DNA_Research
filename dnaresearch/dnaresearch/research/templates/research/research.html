@@ -15,7 +15,7 @@
             <thead class="text-center">
                <tr>
                   <th scope="col">Выбор</th>
-                  <th scope="col">Дата</th>
+                  <th scope="col">Дата поступления</th>
                   <th scope="col">Номер</th>
                   <th class="d-none d-lg-table-cell" scope="col">Сведения об инициаторе исследования</th>
                   <th scope="col">
@@ -35,8 +35,17 @@
                      <th class="text-center" scope="row">
                         <input type="checkbox" class="form-check-input" value="{{ research.id }}">
                      </th>
-                     <td>{{ research.reg_date|date:"d.m.Y" }}</td>
-                     <td class=" d-table-cell text-center">{{ research.reg_number }}</td>
+                     <td>
+                        {{ research.date_of_record|date:"d.m.Y" }}
+                     </td>
+                     <td class=" d-table-cell text-center">
+                        {% if research.reg_number %}
+                        {{ research.reg_number }} от
+                        {{ research.reg_date|date:"d.m.Y" }}
+                        {% else %}
+                        <p class="text-warning">Отсутствует</p>
+                        {% endif %}
+                     </td>
                      <td class="d-none d-lg-table-cell">
                         <p class="my-0 d-none d-xl-inline-block">{{ research.initiator_post }} {{ research.initiator_department }}</p>
                         <p class="my-0 d-none d-xxl-inline-block">{{ research.initiator_rank }}</p>
