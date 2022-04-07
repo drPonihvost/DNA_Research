@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="container-xxl mt-4">
-   <form action="{% url 'research_form' %}" {% block method %}method="post"{% endblock %}>
+   <form action="{% block method_url %}{% url 'research_form' %}{% endblock  %}" method="post">
       {% csrf_token %}
       <div class="row row-cols-1 row-cols-md-2 my-4">
          <div class="col">
@@ -44,7 +44,7 @@
             </div>
          </div>
       </div>
-      <div class="row">
+      <div class="row mb-2">
          <div class="col-12">
             <div class="card">
                <div class="card-header">

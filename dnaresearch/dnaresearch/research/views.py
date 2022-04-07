@@ -33,7 +33,7 @@ class ResearchUpdateForm(UpdateView):
     model = models.Research
     form_class = forms.AddResearch
     template_name = 'research/research_update_form.html'
-    success_url = reverse_lazy('research')
+    success_url = reverse_lazy('register')
     pk_url_kwarg = 'research_id' 
 
 
