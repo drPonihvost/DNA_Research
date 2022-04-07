@@ -1,8 +1,7 @@
-from pyexpat import model
 from django.http import HttpResponse, HttpResponseNotFound
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
 
 from . import forms
 from .services import *
@@ -21,11 +20,22 @@ class Research(DetailView):
     pk_url_kwarg = 'research_id'
 
 
+
 class ResearchForm(CreateView):
     model = models.Research
     form_class = forms.AddResearch
-    template_name = 'research/research_form.html'   
-    success_url = 'research'
+    template_name = 'research/research_form.html'
+ 
+    success_url = reverse_lazy('register')
+
+
+class ResearchUpdateForm(UpdateView):
+    model = models.Research
+    form_class = forms.AddResearch
+    template_name = 'research/research_update_form.html'
+    success_url = reverse_lazy('research')
+    pk_url_kwarg = 'research_id' 
+
 
 
 class Persons(ListView):
@@ -53,6 +63,19 @@ def all_persons(request):
         'persons': get_all_persons()
     }
     return render(request, 'research/all_persons.html', context=context)
+
+""" def add_research(request):
+    if request.method == 'POST':
+        form = forms.AddResearch(request.POST)
+        if form.is_valid():
+            try:
+                models.Research.objects.create(**form.cleaned_data)
+                return redirect('register')
+            except:
+                form.add_error(None, 'Ошибка добавления')
+    else:
+        form = forms.AddResearch()
+    return render(request, 'research/research_form.html', {'form': form}) """
 
 
 def add_person(request, research_id):
