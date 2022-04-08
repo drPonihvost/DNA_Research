@@ -38,12 +38,12 @@
                      <td>
                         {{ research.date_of_record|date:"d.m.Y" }}
                      </td>
-                     <td class=" d-table-cell text-center">
+                     <td class="d-table-cell text-center align-middle">
                         {% if research.reg_number %}
                         {{ research.reg_number }} от
                         {{ research.reg_date|date:"d.m.Y" }}
                         {% else %}
-                        <p class="text-warning">Отсутствует</p>
+                        <span class="text-warning">Отсутствует</span>
                         {% endif %}
                      </td>
                      <td class="d-none d-lg-table-cell">
@@ -65,7 +65,28 @@
                         <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
                            <a href="#" class="btn btn-primary">Зарегистрировать</a>
                            <a href="{{ research.get_absolute_url }}" class="btn btn-primary">Подробнее</a>
-                           <a href="#" class="btn btn-danger">Удалить</a>
+                           <a type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#DeleteModal_{{ research.id }}">Удалить</a>
+                           <!-- Modal -->
+                           <div class="modal fade" id="DeleteModal_{{ research.id }}" tabindex="-1" aria-labelledby="DeleteModalLabel" aria-hidden="true">
+                              <div class="modal-dialog">
+                                 <div class="modal-content">
+                                    <div class="modal-header">
+                                       <h5 class="modal-title" id="DeleteModalLabel">Удалить направление</h5>
+                                       <button type="button" class="btn btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                       Удаление направления так же удалит и данные всех связанных лиц. Продолжить?
+                                    </div>
+                                    <div class="modal-footer">
+                                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+                                       <form action="{% url 'research_delete' research.id %}" method="POST">
+                                          {% csrf_token %}
+                                          <button class="btn btn-primary">Удалить</button>
+                                       </form>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
                            <a href="{{ research.get_url_for_persons }}" class="btn btn-primary">Лица</a>
                         </div>
                      </td>

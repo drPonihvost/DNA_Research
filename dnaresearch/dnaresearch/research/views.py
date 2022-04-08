@@ -1,7 +1,7 @@
 from django.http import HttpResponse, HttpResponseNotFound
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 from . import forms
 from .services import *
@@ -20,22 +20,26 @@ class Research(DetailView):
     pk_url_kwarg = 'research_id'
 
 
-
-class ResearchForm(CreateView):
+class ResearchViewMixin:
     model = models.Research
     form_class = forms.AddResearch
+    success_url = reverse_lazy('register')
+
+
+class ResearchForm(ResearchViewMixin, CreateView):
     template_name = 'research/research_form.html'
- 
-    success_url = reverse_lazy('register')
 
 
-class ResearchUpdateForm(UpdateView):
-    model = models.Research
-    form_class = forms.AddResearch
+class ResearchUpdateForm(ResearchViewMixin, UpdateView):
     template_name = 'research/research_update_form.html'
-    success_url = reverse_lazy('register')
     pk_url_kwarg = 'research_id' 
 
+
+class ResearchDeleteForm(DeleteView):
+    model = models.Research
+    template_name = 'research/research.html'
+    success_url = reverse_lazy('register')
+    pk_url_kwarg = 'research_id'
 
 
 class Persons(ListView):
