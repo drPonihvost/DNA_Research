@@ -2,7 +2,7 @@
 {% load research_tags %}
 {% block title %}{% endblock %}
 {% block command %}
-<a class="btn btn-primary" href="{% url 'all_persons' %}" role="button">Изменить</a>
+<a class="btn btn-primary" href="{% url 'research_update_form' research_id=object.id %}" role="button">Изменить</a>
 <a class="btn btn-primary mx-2" href="{% url 'all_persons' %}" role="button">Добавть лиц</a>
 <a class="btn btn-primary" href="{% url 'all_persons' %}" role="button">Экспорт</a>
 {% endblock %}
@@ -65,7 +65,7 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row mb-4">
         <div class="col-12">
             <div class="card">
                 <div class="card-header">

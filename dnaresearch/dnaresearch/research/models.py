@@ -3,7 +3,7 @@ from django.urls import reverse
 
 
 class Research(models.Model):
-    reg_number = models.IntegerField(blank=True, default=None)
+    reg_number = models.IntegerField(blank=True, default=None, null=True)
     date_of_record = models.DateField(auto_now_add=True)
     initiator_department = models.TextField()
     initiator_post = models.TextField()
@@ -24,7 +24,7 @@ class Research(models.Model):
     incident_date = models.DateField(blank=True, default=None)
     address = models.TextField(blank=True, default=None)
     relative_search = models.BooleanField(default=False)
-    reg_date = models.DateField(blank=True, default=None)
+    reg_date = models.DateField(blank=True, default=None, null=True)
 
     class Meta:
         verbose_name = 'Исследования'
@@ -38,6 +38,9 @@ class Research(models.Model):
 
     def get_url_for_persons(self):
         return reverse('persons', kwargs={'research_id': self.pk})
+
+    def get_url_for_research_update(self):
+        return reverse('research_update_form', kwargs={'research_id': self.pk})
 
 
 class Person(models.Model):
