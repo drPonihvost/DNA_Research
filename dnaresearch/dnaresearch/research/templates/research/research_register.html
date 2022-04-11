@@ -1,0 +1,16 @@
+{% extends 'research/base.html' %}
+{% block content %}
+<form action="{% url 'research_register' research.id %}" method="POST">
+    {% csrf_token %}
+    <div class="container-xl mt-3">
+       {{ form.reg_number.errors }}
+       {{ form.reg_number}}
+       {{ form.reg_date.errors }}
+       {{ form.reg_date}}
+    </div>
+    <div class="container-xl">
+        <button type="submit" class="btn btn-primary mt-2">Зарегистрировать</button>
+        <a href="{% url 'register' %}" class="btn btn-primary mt-2">Отмена</a>
+        <button type="reset" class="btn btn-primary mt-2">Очистить</button>
+ </form>
+{% endblock content %}

@@ -51,3 +51,13 @@ class AddResearch(forms.ModelForm):
             address = forms.TextInput(attrs={'class': 'form-control mb-2', 'placeholder': 'Адрес места происшествия'}),
             relative_search = forms.CheckboxInput(attrs={'class': 'form-check-input', 'type': 'checkbox'})
         )
+
+
+class RegisterForm(forms.ModelForm):
+    class Meta:
+        model = models.Research
+        fields = ['reg_number', 'reg_date']
+        widgets = dict(
+            reg_number = forms.TextInput(attrs={'class': 'form-control mb-2', 'placeholder': 'Номер'}),
+            reg_date = forms.DateInput(attrs={'class': 'form-control date mb-2', 'placeholder': 'Дата регистрации'})
+        )

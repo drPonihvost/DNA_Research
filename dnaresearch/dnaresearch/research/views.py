@@ -31,7 +31,13 @@ class ResearchForm(ResearchViewMixin, CreateView):
 
 
 class ResearchUpdateForm(ResearchViewMixin, UpdateView):
-    template_name = 'research/research_update_form.html'
+    template_name = 'research/research.html'
+    pk_url_kwarg = 'research_id' 
+
+
+class ResearchRegister(ResearchViewMixin, UpdateView):
+    template_name = 'research/research_register.html'
+    form_class = forms.RegisterForm
     pk_url_kwarg = 'research_id' 
 
 

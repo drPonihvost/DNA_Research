@@ -63,7 +63,7 @@
                      <td class="text-center">{% get_person_count research_id=research.id %}</td>
                      <td>
                         <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                           <a href="#" class="btn btn-primary">Зарегистрировать</a>
+                           <a href="{% url 'research_register' research.id %}" class="btn btn-primary">Зарегистрировать</a>
                            <a href="{{ research.get_absolute_url }}" class="btn btn-primary">Подробнее</a>
                            <a type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#DeleteModal_{{ research.id }}">Удалить</a>
                            <!-- Modal -->

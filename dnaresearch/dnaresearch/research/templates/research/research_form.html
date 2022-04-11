@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="container-xxl mt-4">
-   <form action="{% block method_url %}{% url 'research_form' %}{% endblock  %}" method="post">
+   <form action="{% url 'research_form' %}" method="post">
       {% csrf_token %}
       <div class="row row-cols-1 row-cols-md-2 my-4">
          <div class="col">
@@ -12,14 +12,14 @@
                </div>
                <div class="mb-3 p-2">
                   {{ form.initiator_post.errors }}
-                  {{ form.initiator_post}}
+                  {{ form.initiator_post }}
                   {{ form.initiator_department.errors }}
-                  {{ form.initiator_department}}
-                  {{ form.initiator_rank}}
+                  {{ form.initiator_department }}
+                  {{ form.initiator_rank }}
                   <div class="input-group">
-                     {{ form.initiator_surname}}
-                     {{ form.initiator_name}}
-                     {{ form.initiator_patronymic}}
+                     {{ form.initiator_surname }}
+                     {{ form.initiator_name }}
+                     {{ form.initiator_patronymic }}
                   </div>
                </div>
             </div>
@@ -67,8 +67,8 @@
                         {{ form.plot }}
                         <div>
                            <button type="submit" class="btn btn-primary mt-2">Добавить</button>
-                           <button type="cancel" class="btn btn-primary mt-2">Отмена</button>
-                           <button type="clear" class="btn btn-primary mt-2">Очистить</button>
+                           <a href="{% url 'register' %}" class="btn btn-primary mt-2">Отмена</a>
+                           <button type="reset" class="btn btn-primary mt-2">Очистить</button>
                         </div>
                      </div>
                   </div>
