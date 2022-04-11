@@ -1,0 +1,8 @@
+{% extends 'research/base.html' %}
+{% load research_tags %}
+{% block title %}{{ object.surname|title }} {{ object.name.0|upper }}.{{ object.patronymic.0|upper }}.{% endblock %}
+{% block command %}
+<a class="btn btn-primary" href="{% url 'research_update_form' research_id=object.id %}" role="button">Изменить</a>
+<a class="btn btn-primary mx-2" href="{% url 'all_persons' %}" role="button">Удалить</a>
+<a class="btn btn-primary" href="{% url 'all_persons' %}" role="button">Экспорт</a>
+{% endblock %}

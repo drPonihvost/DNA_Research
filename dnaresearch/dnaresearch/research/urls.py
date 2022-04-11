@@ -12,5 +12,6 @@ urlpatterns = [
     path('research/<int:research_id>/person', persons, name='persons'),
     path('research/<int:research_id>/person/<int:person_id>', Person.as_view(), name='person'),
     path('research/person', Persons.as_view(), name='all_persons'),
-    path('research/<int:research_id>/person/add', add_person, name='add_person')
+    path('research/<int:research_id>/person/add', add_person, name='add_person'),
+    path('research/<int:research_id>/person/<int:person_id>', Person.as_view(), name='person_detail'),
 ]

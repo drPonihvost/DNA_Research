@@ -56,7 +56,7 @@ class Persons(ListView):
 
 class Person(DetailView):
     model = models.Person
-    template_name = 'research/research.html'
+    template_name = 'research/person_detail.html'
     pk_url_kwarg = 'person_id'
 
 
