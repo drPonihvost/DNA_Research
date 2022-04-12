@@ -50,8 +50,11 @@ class ResearchDeleteForm(DeleteView):
 
 class Persons(ListView):
     model = models.Person
-    template_name = 'research/all_persons.html'
+    template_name = 'research/persons.html'
     context_object_name = 'persons'
+
+    def get_queryset(self):
+        return get_person_by_research_id(research_id=self.kwargs['research_id'])
 
 
 class Person(DetailView):
@@ -60,8 +63,14 @@ class Person(DetailView):
     pk_url_kwarg = 'person_id'
 
 
+class AllPersons(ListView):
+    model = models.Person
+    template_name = 'research/all_persons.html'
+    context_object_name = 'persons'
 
-def persons(request, research_id):
+
+
+""" def persons(request, research_id):
     context = {
         'research_id': research_id
     }
@@ -73,7 +82,7 @@ def all_persons(request):
         'persons': get_all_persons()
     }
     return render(request, 'research/all_persons.html', context=context)
-
+ """
 """ def add_research(request):
     if request.method == 'POST':
         form = forms.AddResearch(request.POST)
