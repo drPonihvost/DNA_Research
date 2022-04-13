@@ -69,32 +69,20 @@ class AllPersons(ListView):
     context_object_name = 'persons'
 
 
+""" class PersonForm(CreateView):
+    model = models.Person
+    form_class = forms.AddPerson
+    template_name = 'research/person_form.html'
+    success_url = reverse_lazy('persons')
 
-""" def persons(request, research_id):
-    context = {
-        'research_id': research_id
-    }
-    return render(request, 'research/persons.html', context=context)
+    def form_valid(self, form):
+        fields = form.save(commit=False)
+        fields.research_id = self.kwargs['research_id']
+        fields.save()
+        return super().form_valid(form) """
 
 
-def all_persons(request):
-    context = {
-        'persons': get_all_persons()
-    }
-    return render(request, 'research/all_persons.html', context=context)
- """
-""" def add_research(request):
-    if request.method == 'POST':
-        form = forms.AddResearch(request.POST)
-        if form.is_valid():
-            try:
-                models.Research.objects.create(**form.cleaned_data)
-                return redirect('register')
-            except:
-                form.add_error(None, 'Ошибка добавления')
-    else:
-        form = forms.AddResearch()
-    return render(request, 'research/research_form.html', {'form': form}) """
+
 
 
 def add_person(request, research_id):
@@ -108,8 +96,8 @@ def add_person(request, research_id):
                 form.add_error(None, 'Ошибка добавления')
     else:
         form = forms.AddPerson()
-    path = reverse('add_person', kwargs={'research_id': research_id})
-    return render(request, 'research/add_person.html', {'form': form, 'path': path})
+    path = reverse('person_form', kwargs={'research_id': research_id})
+    return render(request, 'research/person_form.html', {'form': form, 'path': path})
 
 
 def pageNotFound(request, exception):

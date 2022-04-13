@@ -12,13 +12,13 @@ class AddPerson(forms.ModelForm):
         model = models.Person
         fields = ['surname', 'name', 'patronymic', 'male', 'birthday', 'birthplace', 'relation']
         widgets = {
-            'surname': forms.TextInput(attrs={'class': 'form-control'}),
-            'name': forms.TextInput(attrs={'class': 'form-control'}),
-            'patronymic': forms.TextInput(attrs={'class': 'form-control'}),
-            'male': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
-            'birthday': forms.DateInput(attrs={'class': 'form-control', 'input-type': 'text'}),
-            'birthplace': forms.TextInput(attrs={'class': 'form-control'}),
-            'relation': forms.TextInput(attrs={'class': 'form-control'})
+            'surname': forms.TextInput(attrs={'class': 'form-control mb-2', 'placeholder': 'Фамилия'}),
+            'name': forms.TextInput(attrs={'class': 'form-control mb-2', 'placeholder': 'Имя'}),
+            'patronymic': forms.TextInput(attrs={'class': 'form-control mb-2', 'placeholder': 'Отчество'}),
+            'male': forms.CheckboxInput(attrs={'class': 'form-control mb-2'}),
+            'birthday': forms.DateInput(attrs={'class': 'form-control mb-2', 'placeholder': 'Дата рождения'}),
+            'birthplace': forms.TextInput(attrs={'class': 'form-control mb-2', 'placeholder': 'Место рождения'}),
+            'relation': forms.TextInput(attrs={'class': 'form-control mb-2', 'placeholder': 'Степень родства'})
         }
 
 

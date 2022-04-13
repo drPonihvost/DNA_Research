@@ -6,10 +6,12 @@
    <th scope="col">Фамилия</th>
    <th scope="col">Имя</th>
    <th scope="col">Отчество</th>
-   <th scope="col">Пол</th>
+   <th class="d-none d-md-table-cell" scope="col">Пол</th>
    <th scope="col">Дата рождения</th>
-   <th scope="col">Место рождения</th>
+   <th class="d-none d-lg-table-cell" scope="col" >Место рождения</th>
    <th scope="col">Родственник</th>
+   <th scope="col">Дата поступления</th>
+   <th scope="col">Дата регистрации</th>
    <th scope="col">Действия</th>
 {% endblock table_header %}
 
@@ -23,17 +25,25 @@
             <td>{{ person.surname }}</td>
             <td>{{ person.name }}</td>
             <td>{{ person.patronymic }}</td>
-            <td>{% if person.male %}Мужской{% else %}Женский{% endif %}</td>
-            <td>{{ person.birthday }}</td>
-            <td>{{ person.birthplace }}</td>
+            <td class="d-none d-md-table-cell">{% if person.male %}Мужской{% else %}Женский{% endif %}</td>
+            <td>{{ person.birthday|date:"d.m.Y" }}</td>
+            <td class="d-none d-lg-table-cell">{{ person.birthplace }}</td>
             <td>
                {% if person.related %}
                {{ person.related }}
                {% endif %}
             </td>
+            <td>{{ person.research.date_of_record|date:"d.m.Y" }}</td>
+            <td>
+               {% if person.research.reg_date %}
+                  {{ person.research.reg_date|date:"d.m.Y" }}
+               {% else %}
+                  <span class="text-warning">Отсутствует</span>
+               {% endif %}
+            </td>
             <td>
                <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                  <a href="#" class="btn btn-primary">Редактировать</a>
+                  <a href="{{ person.research.get_absolute_url }}" class="btn btn-primary">Направление</a>
                </div>
             </td>
          </tr>

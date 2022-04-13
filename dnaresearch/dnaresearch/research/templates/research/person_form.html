@@ -1,16 +1,21 @@
-{% extends 'research/base.html' %}
+{% extends 'research/base_person_card.html' %}
 
-{% block content %}
-<div class="container-fluid">
-   <form action="{{ path }}" method="post">
-      {% csrf_token %}
-      {% for f in form %}
-      <div class="col-4">
-         <label class="form-label" for="{{ f.id_for_label }}">{{ f.label }}: </label>
-         {{ f }}
+{% block person_card_body %}
+<form action="{{ path }}" method="post">
+   {% csrf_token %}
+   <div class="mb-3 p-2">
+      {{ form.surname }}
+      {{ form.name }}
+      {{ form.patronymic }}
+      {{ form.male }}
+      {{ form.birthday }}
+      {{ form.birthplace }}
+      {{ form.relation }}
+      <div>
+         <button type="submit" class="btn btn-primary mt-2">Добавить</button>
+         <a href="{% url 'register' %}" class="btn btn-primary mt-2">Отмена</a>
+         <button type="reset" class="btn btn-primary mt-2">Очистить</button>
       </div>
-      {% endfor %}
-      <button type="submit" class="btn btn-primary">Добавить</button>
-   </form>
-</div>
-{% endblock %}
+   </div>
+</form>
+{% endblock person_card_body %}
