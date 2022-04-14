@@ -1,8 +1,30 @@
-{% extends 'research/base.html' %}
+{% extends 'research/base_person_card.html' %}
 {% load research_tags %}
 {% block title %}{{ object.surname|title }} {{ object.name.0|upper }}.{{ object.patronymic.0|upper }}.{% endblock %}
 {% block command %}
-<a class="btn btn-primary" href="{% url 'research_update_form' research_id=object.id %}" role="button">Изменить</a>
-<a class="btn btn-primary mx-2" href="{% url 'all_persons' %}" role="button">Удалить</a>
-<a class="btn btn-primary" href="{% url 'all_persons' %}" role="button">Экспорт</a>
+
 {% endblock %}
+{% block person_card_body %}
+<div class="col-12">
+    <h5>Фамилия:</h5>
+    <h6>{{ object.surname }}</h6>
+    <h5>Имя:</h5>
+    <h6>{{ object.name }}</h6>
+    <h5>Отчество:</h5>
+    <h6>{{ object.patronymic }}</h6>
+    <h5>Пол:</h5>
+    {% if object.male %}
+    <h6>Мужской</h6>    
+    {% else %}
+    <h6>Женский</h6> 
+    {% endif %}
+    <h5>Дата рождения:</h5>
+    <h6>{{ object.birthday }}</h6>
+    <h5>Место рождения:</h5>
+    <h6>{{ object.birthplace }}</h6>
+    {% if object.research.relative_search %}
+    <h5>Степень родства:</h5>
+    <h6>{{ object.relation }}</h6>
+    {% endif %}
+</div>
+{% endblock person_card_body %}

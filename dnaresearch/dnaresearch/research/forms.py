@@ -2,11 +2,6 @@ from django import forms
 from . import models
 
 
-GENDER_MALE = 1
-GENDER_FEMALE = 0
-CHOICE_GENDER = ((GENDER_MALE, 'Мужской'), (GENDER_FEMALE, 'Женский'))
-
-
 class AddPerson(forms.ModelForm):
     class Meta:
         model = models.Person
@@ -15,7 +10,7 @@ class AddPerson(forms.ModelForm):
             'surname': forms.TextInput(attrs={'class': 'form-control mb-2', 'placeholder': 'Фамилия'}),
             'name': forms.TextInput(attrs={'class': 'form-control mb-2', 'placeholder': 'Имя'}),
             'patronymic': forms.TextInput(attrs={'class': 'form-control mb-2', 'placeholder': 'Отчество'}),
-            'male': forms.CheckboxInput(attrs={'class': 'form-control mb-2'}),
+            'male': forms.RadioSelect(attrs={'class': 'form-check-input mb-2', 'type': 'radio'}),
             'birthday': forms.DateInput(attrs={'class': 'form-control mb-2', 'placeholder': 'Дата рождения'}),
             'birthplace': forms.TextInput(attrs={'class': 'form-control mb-2', 'placeholder': 'Место рождения'}),
             'relation': forms.TextInput(attrs={'class': 'form-control mb-2', 'placeholder': 'Степень родства'})

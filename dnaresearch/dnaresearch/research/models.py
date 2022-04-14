@@ -1,6 +1,8 @@
 from django.db import models
 from django.urls import reverse
 
+BOOL_CHOICE = ((True, 'Мужской'), (False, 'Женский'))
+
 
 class Research(models.Model):
     reg_number = models.IntegerField(blank=True, default=None, null=True)
@@ -47,7 +49,7 @@ class Person(models.Model):
     surname = models.CharField(max_length=255, verbose_name='Фамилия')
     name = models.CharField(max_length=255)
     patronymic = models.CharField(max_length=255)
-    male = models.BooleanField()
+    male = models.BooleanField(choices=BOOL_CHOICE)
     birthday = models.DateField()
     birthplace = models.TextField()
     relation = models.CharField(max_length=255, blank=True, null=True, default=None)
@@ -62,6 +64,9 @@ class Person(models.Model):
         return f'{self.surname} {self.name} {self.patronymic} {self.birthday} г.р.'
 
     def get_absolute_url(self):
-        return reverse('person', kwargs={'research_id': self.research.primary_key, 'person_id': self.pk})
+        return reverse('person_detail', kwargs={'research_id': self.research.pk, 'person_id': self.pk})
+
+    def get_url_for_delete(self):
+        return reverse('person_delete', kwargs={'research_id': self.research.pk, 'person_id': self.pk})
 
     

@@ -1,4 +1,5 @@
 {% extends 'research/base_person_card.html' %}
+{% load research_tags %}
 
 {% block person_card_body %}
 <form action="{{ path }}" method="post">
@@ -7,10 +8,14 @@
       {{ form.surname }}
       {{ form.name }}
       {{ form.patronymic }}
-      {{ form.male }}
+      <div class="form-check">
+         {{ form.male }}
+      </div>
       {{ form.birthday }}
       {{ form.birthplace }}
+      {% if related %}
       {{ form.relation }}
+      {% endif %}
       <div>
          <button type="submit" class="btn btn-primary mt-2">Добавить</button>
          <a href="{% url 'register' %}" class="btn btn-primary mt-2">Отмена</a>

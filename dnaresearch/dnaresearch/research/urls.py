@@ -9,9 +9,9 @@ urlpatterns = [
     path('research/<int:research_id>/edit', ResearchUpdateForm.as_view(), name='research_update_form'),
     path('research/<int:research_id>/remove', ResearchDeleteForm.as_view(), name='research_delete'),
     path('research/<int:research_id>/register', ResearchRegister.as_view(), name='research_register'),
-    path('research/<int:research_id>/person', Persons.as_view(), name='persons'),
-    path('research/<int:research_id>/person/<int:person_id>', Person.as_view(), name='person'),
     path('research/person', AllPersons.as_view(), name='all_persons'),
-    path('research/<int:research_id>/person/add', add_person, name='person_form'),
+    path('research/<int:research_id>/person', Persons.as_view(), name='persons'),
     path('research/<int:research_id>/person/<int:person_id>', Person.as_view(), name='person_detail'),
+    path('research/<int:research_id>/person/add', PersonForm.as_view(), name='person_form'),
+    path('research/<int:research_id>/person/<int:person_id>/delete', PersonDelete.as_view(), name='person_delete'),
 ]

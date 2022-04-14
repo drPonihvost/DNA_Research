@@ -33,8 +33,29 @@
             {% endif %}
             <td>
                <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                  <a href="#" class="btn btn-primary">Редактировать</a>
-                  <a href="#" class="btn btn-danger">Удалить</a>
+                  <a href="{{ person.get_absolute_url }}" class="btn btn-primary">Подробнее</a>
+                  <a type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#DeleteModal_{{ person.id }}">Удалить</a>
+                  <!-- Modal -->
+                  <div class="modal fade" id="DeleteModal_{{ person.id }}" tabindex="-1" aria-labelledby="DeleteModalLabel" aria-hidden="true">
+                     <div class="modal-dialog">
+                        <div class="modal-content">
+                           <div class="modal-header">
+                              <h5 class="modal-title" id="DeleteModalLabel">Удалить лицо</h5>
+                              <button type="button" class="btn btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                           </div>
+                           <div class="modal-body">
+                              Лицо направленное на проверку будет удалено. Продолжить?
+                           </div>
+                           <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+                              <form action="{% url 'person_delete' person.research.id person.id %}" method="POST">
+                                 {% csrf_token %}
+                                 <button class="btn btn-primary">Удалить</button>
+                              </form>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
                </div>
             </td>
          </tr>
