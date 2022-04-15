@@ -15,9 +15,7 @@ def get_research(research_id=None):
 
 @register.simple_tag()
 def check_related(research_id):
-    if models.Person.objects.get(research_id):
-        return True
-    return False
+    return models.Research.objects.get(pk=research_id).relative_search
 
 
 @register.simple_tag()

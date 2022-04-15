@@ -7,81 +7,99 @@ from . import forms
 from .services import *
 from . import models
 
-
-class Researches(ListView):
+# Research Mixin
+class ResearchMixin:
     model = models.Research
-    template_name = 'research/research.html'
-    context_object_name = 'researches'
 
 
-class Research(DetailView):
-    model = models.Research
-    template_name = 'research/research_detail.html'
+class ResearchSingleMixin(ResearchMixin):
     pk_url_kwarg = 'research_id'
 
 
-class ResearchViewMixin:
-    model = models.Research
+class ResearchListMixin(ResearchMixin):
+    context_object_name = 'researches'
+
+
+class ResearchFormMixin(ResearchSingleMixin):
     form_class = forms.AddResearch
     success_url = reverse_lazy('register')
 
 
-class ResearchForm(ResearchViewMixin, CreateView):
+# Research ListObject
+class Researches(ResearchListMixin, ListView):
+    template_name = 'research/research.html'
+
+
+# Research SingleObject
+class Research(ResearchSingleMixin, DetailView):
+    template_name = 'research/research_detail.html'  
+
+
+class ResearchForm(ResearchFormMixin, CreateView):
     template_name = 'research/research_form.html'
 
 
-class ResearchUpdateForm(ResearchViewMixin, UpdateView):
-    template_name = 'research/research.html'
-    pk_url_kwarg = 'research_id' 
+class ResearchUpdateForm(ResearchFormMixin, UpdateView):
+    template_name = 'research/research_form.html'
 
 
-class ResearchRegister(ResearchViewMixin, UpdateView):
+class ResearchRegister(ResearchFormMixin, UpdateView):
     template_name = 'research/research_register.html'
     form_class = forms.RegisterForm
-    pk_url_kwarg = 'research_id' 
 
 
 class ResearchDeleteForm(DeleteView):
-    model = models.Research
-    template_name = 'research/research.html'
-    success_url = reverse_lazy('register')
-    pk_url_kwarg = 'research_id'
+    pass
 
 
-class Persons(ListView):
+# Person
+# Person Mixins
+class PersonMixin:
     model = models.Person
-    template_name = 'research/persons.html'
+
+
+class PersonSingleMixin(PersonMixin):
+    pk_url_kwarg = 'person_id'
+
+
+class PersonListMixin(PersonMixin):
     context_object_name = 'persons'
 
-    def get_queryset(self):
-        return get_person_by_research_id(research_id=self.kwargs['research_id'])
 
-
-class Person(DetailView):
-    model = models.Person
-    template_name = 'research/person_detail.html'
-    pk_url_kwarg = 'person_id'
-
-
-class PersonDelete(DeleteView):
-    model = models.Person
-    pk_url_kwarg = 'person_id'
-
+class PersonRedirectMixin(PersonSingleMixin):
     def get_success_url(self):
         research_id = self.kwargs['research_id']
         return reverse_lazy('persons', kwargs={'research_id': research_id})
 
 
-class AllPersons(ListView):
-    model = models.Person
-    template_name = 'research/all_persons.html'
-    context_object_name = 'persons'
-
-
-class PersonForm(CreateView):
-    model = models.Person
+class PersonFormMixin(PersonRedirectMixin):
     form_class = forms.AddPerson
     template_name = 'research/person_form.html'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['check_related'] = check_related(self.kwargs['research_id'])
+        return context
+
+
+# Person ListObject
+class AllPersons(PersonListMixin, ListView):
+    template_name = 'research/all_persons.html'
+
+
+class Persons(PersonListMixin, ListView):
+    template_name = 'research/persons.html'
+
+    def get_queryset(self):
+        return get_person_by_research_id(research_id=self.kwargs['research_id'])
+
+
+# Person SingleObject
+class Person(PersonSingleMixin, DetailView):
+    template_name = 'research/person_detail.html'
+
+
+class PersonForm(PersonFormMixin, CreateView):
 
     def form_valid(self, form):
         fields = form.save(commit=False)
@@ -89,9 +107,13 @@ class PersonForm(CreateView):
         fields.save()
         return super().form_valid(form)
 
-    def get_success_url(self):
-        research_id = self.kwargs['research_id']
-        return reverse_lazy('persons', kwargs={'research_id': research_id})
+
+class PersonUpdate(PersonFormMixin, UpdateView):
+    pass
+
+
+class PersonDelete(PersonRedirectMixin, DeleteView):
+    pass
 
 
 def pageNotFound(request, exception):

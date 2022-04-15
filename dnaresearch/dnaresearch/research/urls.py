@@ -13,5 +13,6 @@ urlpatterns = [
     path('research/<int:research_id>/person', Persons.as_view(), name='persons'),
     path('research/<int:research_id>/person/<int:person_id>', Person.as_view(), name='person_detail'),
     path('research/<int:research_id>/person/add', PersonForm.as_view(), name='person_form'),
+    path('research/<int:research_id>/person/<int:person_id>/update', PersonUpdate.as_view(), name='person_update'),
     path('research/<int:research_id>/person/<int:person_id>/delete', PersonDelete.as_view(), name='person_delete'),
 ]
