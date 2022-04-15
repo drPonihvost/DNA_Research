@@ -48,8 +48,9 @@ class ResearchRegister(ResearchFormMixin, UpdateView):
     form_class = forms.RegisterForm
 
 
-class ResearchDeleteForm(DeleteView):
-    pass
+class ResearchDeleteForm(ResearchFormMixin, DeleteView):
+    def get_success_url(self):
+        return reverse_lazy('register')
 
 
 # Person
@@ -68,8 +69,7 @@ class PersonListMixin(PersonMixin):
 
 class PersonRedirectMixin(PersonSingleMixin):
     def get_success_url(self):
-        research_id = self.kwargs['research_id']
-        return reverse_lazy('persons', kwargs={'research_id': research_id})
+        return reverse_lazy('persons', kwargs={'research_id': self.kwargs['research_id']})
 
 
 class PersonFormMixin(PersonRedirectMixin):
