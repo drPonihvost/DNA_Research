@@ -7,7 +7,8 @@ from . import forms
 from .services import *
 from . import models
 
-# Research Mixin
+
+# -------Research Mixin--------
 class ResearchMixin:
     model = models.Research
 
@@ -48,9 +49,8 @@ class ResearchRegister(ResearchFormMixin, UpdateView):
     form_class = forms.RegisterForm
 
 
-class ResearchDeleteForm(ResearchFormMixin, DeleteView):
-    def get_success_url(self):
-        return reverse_lazy('register')
+class ResearchDeleteForm(ResearchSingleMixin, DeleteView):
+    success_url = reverse_lazy('register')
 
 
 # Person
