@@ -1,7 +1,10 @@
-from django.http import HttpResponse, HttpResponseNotFound
+import os
+import mimetypes
+from django.http import HttpResponse, HttpResponseNotFound, FileResponse, StreamingHttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.core.servers.basehttp import FileWrapper
 
 from . import forms
 from .services import *
@@ -93,6 +96,11 @@ class Persons(PersonListMixin, ListView):
     def get_queryset(self):
         return get_person_by_research_id(research_id=self.kwargs['research_id'])
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['research_id'] = self.kwargs['research_id']
+        return context
+      
 
 # Person SingleObject
 class Person(PersonSingleMixin, DetailView):
@@ -114,6 +122,18 @@ class PersonUpdate(PersonFormMixin, UpdateView):
 
 class PersonDelete(PersonRedirectMixin, DeleteView):
     pass
+
+
+def single_export(request, research_id):
+    path = research_export(research_id)
+    the_file = path
+    filename = os.path.basename(the_file)
+    chunk_size = 8192
+    response = StreamingHttpResponse(FileWrapper(open(the_file, 'rb'), chunk_size),
+                            content_type=mimetypes.guess_type(the_file)[0])
+    response['Content-Length'] = os.path.getsize(the_file)    
+    response['Content-Disposition'] = "attachment; filename=%s" % filename
+    return response
 
 
 def pageNotFound(request, exception):

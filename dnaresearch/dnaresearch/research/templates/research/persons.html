@@ -1,6 +1,11 @@
 {% extends 'research/base_person_table.html' %}
 {% load research_tags %}
 {% block title %}Лица в наравлении{% endblock %}
+{% block command %}
+<a class="btn btn-primary" href="{% url 'person_form' research_id %}" role="button">Добавить</a>
+<a class="btn btn-primary mx-2" href="#" role="button">Сканировать</a>
+<a class="btn btn-primary" href="{% url 'research_detail' research_id %}" role="button">Направление</a>
+{% endblock command %}
 
 {% block table_header %}
    <th scope="col">№</th>
@@ -34,6 +39,7 @@
             <td>
                <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
                   <a href="{{ person.get_absolute_url }}" class="btn btn-primary">Подробнее</a>
+                  <a href="{{ person.get_url_for_update }}" class="btn btn-primary">Изменить</a>
                   <a type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#DeleteModal_{{ person.id }}">Удалить</a>
                   <!-- Modal -->
                   <div class="modal fade" id="DeleteModal_{{ person.id }}" tabindex="-1" aria-labelledby="DeleteModalLabel" aria-hidden="true">

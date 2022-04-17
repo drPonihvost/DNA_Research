@@ -66,6 +66,9 @@ class Person(models.Model):
     def get_absolute_url(self):
         return reverse('person_detail', kwargs={'research_id': self.research.pk, 'person_id': self.pk})
 
+    def get_url_for_update(self):
+        return reverse('person_update', kwargs={'research_id': self.research.pk, 'person_id': self.pk})
+
     def get_url_for_delete(self):
         return reverse('person_delete', kwargs={'research_id': self.research.pk, 'person_id': self.pk})
 
