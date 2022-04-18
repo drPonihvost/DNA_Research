@@ -1,5 +1,11 @@
 from .models import *
 
+EXPORT_FILE_HEADER = [
+    'Инициалы, Фамилия', 'должность', 'Орган назначивший',
+    'Фамилия', 'Имя', 'Отчество', 'Дата рождения',	'место рождения',
+    '№ дела (с указанием категории: у/д, РД, КУСП и т.д.)',	'Состав преступления',
+    'Статья УК', 'Степень родства (заполняется для родственников разыскиваемых)'
+]
 
 def get_all_research():
     return Research.objects.all()
@@ -21,12 +27,31 @@ def get_all_persons():
     return Person.objects.all()
 
 
+def prepare_line(line):
+    return line[0].upper() + line[1::]
+
+
 def research_export(research_id):
     research = get_research_by_id(research_id)
     persons = get_person_by_research_id(research_id)
+    file_name = f'{research.reg_number}_{research.reg_date}_{len(persons)}.txt'
 
-    with open(f'{research.reg_number}_{research.reg_date}_{len(persons)}.txt', 'w') as file:
+    with open(file_name, 'w') as file:
+        file.write('\t'.join(EXPORT_FILE_HEADER) + '\n')
         for person in persons:
-            file.write(f'{research.reg_number}/t{person.surname}/t{person.name}/t{person.patronymic}/n')
-
-    return f'{research.reg_number}_{research.reg_date}_{len(persons)}.txt'
+            export_data = [
+                f'{research.initiator_name[0].upper()}.{research.initiator_patronymic[0].upper()}. {prepare_line(research.initiator_surname)}',
+                prepare_line(research.initiator_post),
+                prepare_line(research.initiator_department),
+                prepare_line(person.surname),
+                prepare_line(person.name),
+                prepare_line(person.patronymic),
+                str(person.birthday),
+                person.birthplace,
+                research.event_number,
+                prepare_line(research.plot),
+                research.article,
+                prepare_line(person.related) if research.relative_search else ''
+            ]
+            file.write('\t'.join(export_data) + '\n')
+    return file_name

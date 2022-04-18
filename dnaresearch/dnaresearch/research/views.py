@@ -4,7 +4,7 @@ from django.http import HttpResponse, HttpResponseNotFound, FileResponse, Stream
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from django.core.servers.basehttp import FileWrapper
+
 
 from . import forms
 from .services import *
@@ -124,17 +124,13 @@ class PersonDelete(PersonRedirectMixin, DeleteView):
     pass
 
 
-def single_export(request, research_id):
-    path = research_export(research_id)
-    the_file = path
-    filename = os.path.basename(the_file)
-    chunk_size = 8192
-    response = StreamingHttpResponse(FileWrapper(open(the_file, 'rb'), chunk_size),
-                            content_type=mimetypes.guess_type(the_file)[0])
-    response['Content-Length'] = os.path.getsize(the_file)    
-    response['Content-Disposition'] = "attachment; filename=%s" % filename
-    return response
+def single_export(request):
 
+    path = research_export(request.get('research_id'))
+    with open(path, 'rb') as fh:
+            response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")
+            response['Content-Disposition'] = 'inline; filename=' + os.path.basename(path)
+            return response
 
 def pageNotFound(request, exception):
     return HttpResponseNotFound('<h1>Страница не найдена</h1>')
