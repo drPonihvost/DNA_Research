@@ -5,7 +5,7 @@ from .views import *
 urlpatterns = [
     path('research/', Researches.as_view(), name='register'),
     path('research/add', ResearchForm.as_view(), name='research_form'),
-    path('research/export', single_export, name='research_export'),
+    path('research/export/', single_export, name='research_export'),
     path('research/<int:research_id>', Research.as_view(), name='research_detail'),
     path('research/<int:research_id>/edit', ResearchUpdateForm.as_view(), name='research_update_form'),
     path('research/<int:research_id>/remove', ResearchDeleteForm.as_view(), name='research_delete'),

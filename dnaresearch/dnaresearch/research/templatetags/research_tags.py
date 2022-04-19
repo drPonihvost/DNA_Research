@@ -33,12 +33,9 @@ def get_person_count(research_id):
 
 @register.simple_tag()
 def get_export_url(param):
-    param=[1,2,3]
     if isinstance(param, int):
-        url = reverse('research_export') + f'?research_id={param}'
+        return reverse('research_export') + f'?research_id={param}'
     elif isinstance(param, list):
-        param = [f'research_id={i}' for i in param]
-        url = reverse('research_export') + f'?{param}'
-    print(url)
-    return reverse('research_export', kwargs={'research': [param]})
+        param = ','.join(param)
+        return reverse('research_export') + f'?research_id={param}'
 

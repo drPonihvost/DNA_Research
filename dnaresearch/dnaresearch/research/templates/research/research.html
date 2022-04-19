@@ -33,7 +33,7 @@
                   {% for research in researches %}
                   <tr>
                      <th class="text-center" scope="row">
-                        <input type="checkbox" class="form-check-input" value="{{ research.id }}">
+                        <input type="checkbox" class="form-check-input" name="{{ research.id }}">
                      </th>
                      <td>
                         {{ research.date_of_record|date:"d.m.Y" }}
@@ -98,4 +98,5 @@
       </div>
    </div>
 </div>
-{% endblock %}
+{% endblock content %}
+
