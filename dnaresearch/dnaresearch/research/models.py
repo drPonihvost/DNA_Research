@@ -1,7 +1,13 @@
 from django.db import models
 from django.urls import reverse
 
-BOOL_CHOICE = ((True, 'Мужской'), (False, 'Женский'))
+
+class CriminalArticles(models.Model):
+    article = models.CharField(max_length=1000)
+
+    class Meta:
+        verbose_name = 'Статьи УК РФ'
+        verbose_name_plural = 'Статьи УК РФ'
 
 
 class Research(models.Model):
@@ -46,10 +52,15 @@ class Research(models.Model):
 
 
 class Person(models.Model):
+
+    class Gender(models.TextChoices):
+        MALE = 'Мужской'
+        FEMALE = 'Женский'
+
     surname = models.CharField(max_length=255, verbose_name='Фамилия')
     name = models.CharField(max_length=255)
     patronymic = models.CharField(max_length=255)
-    male = models.BooleanField(choices=BOOL_CHOICE)
+    gender = models.CharField(max_length=7, choices=Gender.choices, default=Gender.MALE)
     birthday = models.DateField()
     birthplace = models.TextField()
     relation = models.CharField(max_length=255, blank=True, null=True, default=None)

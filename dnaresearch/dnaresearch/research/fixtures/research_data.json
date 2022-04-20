@@ -60,7 +60,7 @@
       "surname": "Иванов",
       "name": "Иван",
       "patronymic": "Иванович",
-      "male": true,
+      "gender": "Мужской",
       "birthday": "1978-02-15",
       "birthplace": "г. Абакан Красноярского края",
       "research_id": 1
@@ -73,7 +73,7 @@
       "surname": "Петров",
       "name": "Сергей",
       "patronymic": "Валерьевич",
-      "male": true,
+      "gender": "Мужской",
       "birthday": "1999-03-17",
       "birthplace": "г. Новосибирск",
       "research_id": 1
@@ -86,7 +86,7 @@
       "surname": "Хвостов",
       "name": "Виктор",
       "patronymic": "Петрович",
-      "male": true,
+      "gender": "Мужской",
       "birthday": "1988-11-26",
       "birthplace": "г. Абакан Красноярского края",
       "research_id": 1
@@ -99,7 +99,7 @@
       "surname": "Польский",
       "name": "Иван",
       "patronymic": "Алексеевич",
-      "male": true,
+      "gender": "Мужской",
       "birthday": "1985-05-01",
       "birthplace": "г. Томск",
       "research_id": 2
