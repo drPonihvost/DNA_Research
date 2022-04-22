@@ -3,7 +3,8 @@ from . import models
 
 
 class AddPerson(forms.ModelForm):
-    gender = forms.ChoiceField(choices=[('Мужской', 'Мужской'), ('Женский', 'Женский')], widget=forms.RadioSelect())
+    CHOICES=(('Мужской','Мужской'), ('Женский','Женский'))
+    gender = forms.TypedChoiceField(choices=CHOICES, widget=forms.RadioSelect(attrs={'class': 'form-check-input mb-2', 'type': 'radio'}))
     class Meta:
         model = models.Person
         fields = ['surname', 'name', 'patronymic', 'gender', 'birthday', 'birthplace', 'relation']
@@ -11,7 +12,7 @@ class AddPerson(forms.ModelForm):
             'surname': forms.TextInput(attrs={'class': 'form-control mb-2', 'placeholder': 'Фамилия'}),
             'name': forms.TextInput(attrs={'class': 'form-control mb-2', 'placeholder': 'Имя'}),
             'patronymic': forms.TextInput(attrs={'class': 'form-control mb-2', 'placeholder': 'Отчество'}),
-            # 'gender': forms.RadioSelect(attrs={'class': 'form-check-input mb-2', 'type': 'radio'}),
+            'gender': forms.RadioSelect(attrs={'class': 'form-check-input mb-2', 'type': 'radio'}),
             'birthday': forms.DateInput(attrs={'class': 'form-control mb-2', 'placeholder': 'Дата рождения'}),
             'birthplace': forms.TextInput(attrs={'class': 'form-control mb-2', 'placeholder': 'Место рождения'}),
             'relation': forms.TextInput(attrs={'class': 'form-control mb-2', 'placeholder': 'Степень родства'})

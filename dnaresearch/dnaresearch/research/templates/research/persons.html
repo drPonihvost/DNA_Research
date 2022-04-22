@@ -30,7 +30,7 @@
             <td>{{ person.surname }}</td>
             <td>{{ person.name }}</td>
             <td>{{ person.patronymic }}</td>
-            <td>{% if person.male %}Мужской{% else %}Женский{% endif %}</td>
+            <td>{{ person.gender }}</td>
             <td>{{ person.birthday|date:"d.m.Y" }}</td>
             <td>{{ person.birthplace }}</td>
             {% if person.related %}

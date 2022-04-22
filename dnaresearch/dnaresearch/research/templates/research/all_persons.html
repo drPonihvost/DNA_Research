@@ -25,7 +25,7 @@
             <td>{{ person.surname }}</td>
             <td>{{ person.name }}</td>
             <td>{{ person.patronymic }}</td>
-            <td class="d-none d-md-table-cell">{% if person.male %}Мужской{% else %}Женский{% endif %}</td>
+            <td class="d-none d-md-table-cell">{{ person.gender }}</td>
             <td>{{ person.birthday|date:"d.m.Y" }}</td>
             <td class="d-none d-lg-table-cell">{{ person.birthplace }}</td>
             <td>

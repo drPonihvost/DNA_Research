@@ -132,9 +132,7 @@ def single_export(request):
     elif isinstance(research_id, int):
         path = research_export(list(research_id))
     elif isinstance(research_id, str):
-        print(research_id)
         research_id = research_id.split(sep=',')
-        print(research_id)
         path = research_export(research_id)
     with open(path, 'rb') as fh:
             response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")

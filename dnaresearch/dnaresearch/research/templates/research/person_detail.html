@@ -35,11 +35,7 @@
     <h5>Отчество:</h5>
     <h6>{{ object.patronymic }}</h6>
     <h5>Пол:</h5>
-    {% if object.male %}
-    <h6>Мужской</h6>    
-    {% else %}
-    <h6>Женский</h6> 
-    {% endif %}
+    <h6>{{ object.gender }}</h6>
     <h5>Дата рождения:</h5>
     <h6>{{ object.birthday }}</h6>
     <h5>Место рождения:</h5>
