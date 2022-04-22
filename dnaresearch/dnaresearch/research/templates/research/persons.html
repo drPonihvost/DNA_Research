@@ -1,54 +1,70 @@
-{% extends 'research/base.html' %}
+{% extends 'research/base_person_table.html' %}
 {% load research_tags %}
 {% block title %}Лица в наравлении{% endblock %}
+{% block command %}
+<a class="btn btn-primary" href="{% url 'person_form' research_id %}" role="button">Добавить</a>
+<a class="btn btn-primary mx-2" href="#" role="button">Сканировать</a>
+<a class="btn btn-primary" href="{% url 'research_detail' research_id %}" role="button">Направление</a>
+{% endblock command %}
 
-{% block content %}
-<div id="content">
-   <div class="container-fluid">
-      <table class="table table-bordered" style="text-align: center; line-height: 1; vertical-align: middle;">
-         <thead>
-            <tr style="text-align: center;">
-               <th scope="col">Выбор</th>
-               <th scope="col">Фамилия</th>
-               <th scope="col">Имя</th>
-               <th scope="col">Отчество</th>
-               <th scope="col">Пол</th>
-               <th scope="col">Дата рождения</th>
-               <th scope="col">Место рождения</th>
-               {% if person.related %}
-               <td scope="col">Родственник</td>
-               {% endif %}
-               <th scope="col">Действия</th>
-            </tr>
-         </thead>
-         <tbody style="vertical-align: top;">
-         {% get_persons research_id as persons %}
-            {% if persons %}
-            {% for person in persons %}
-            <tr>
-               <th scope="row" style="vertical-align: middle;">
-                  <input type="checkbox" class="form-check-input" value="{{ research.id }}">
-               </th>
-               <td>{{ person.surname }}</td>
-               <td>{{ person.name }}</td>
-               <td>{{ person.patronymic }}</td>
-               <td>{% if person.male %}Мужской{% else %}Женский{% endif %}</td>
-               <td>{{ person.birthday }}</td>
-               <td>{{ person.birthplace }}</td>
-               {% if person.related %}
+{% block table_header %}
+   <th scope="col">№</th>
+   <th scope="col">Фамилия</th>
+   <th scope="col">Имя</th>
+   <th scope="col">Отчество</th>
+   <th scope="col">Пол</th>
+   <th scope="col">Дата рождения</th>
+   <th scope="col">Место рождения</th>
+   {% if person.related %}
+      <td scope="col">Степень родства</td>
+   {% endif %}
+      <th scope="col">Действия</th>
+{% endblock table_header %}
+{% block table_body %}
+   {% if persons %}
+      {% for person in persons %}
+         <tr>
+            <th class="text-center" scope="row">
+               {{ forloop.counter }}
+            </th>
+            <td>{{ person.surname }}</td>
+            <td>{{ person.name }}</td>
+            <td>{{ person.patronymic }}</td>
+            <td>{{ person.gender }}</td>
+            <td>{{ person.birthday|date:"d.m.Y" }}</td>
+            <td>{{ person.birthplace }}</td>
+            {% if person.related %}
                <td>{{ person.related }}</td>
-               {% endif %}
-               <td>
-                  <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                     <a href="#" class="btn btn-primary">Редактировать</a>
-                     <a href="#" class="btn btn-danger">Удалить</a>
-                  </div>
-               </td>
-            </tr>
-            {% endfor %}
             {% endif %}
-         </tbody>
-      </table>
-   </div>
-</div>
-{% endblock %}
+            <td>
+               <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                  <a href="{{ person.get_absolute_url }}" class="btn btn-primary">Подробнее</a>
+                  <a href="{{ person.get_url_for_update }}" class="btn btn-primary">Изменить</a>
+                  <a type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#DeleteModal_{{ person.id }}">Удалить</a>
+                  <!-- Modal -->
+                  <div class="modal fade" id="DeleteModal_{{ person.id }}" tabindex="-1" aria-labelledby="DeleteModalLabel" aria-hidden="true">
+                     <div class="modal-dialog">
+                        <div class="modal-content">
+                           <div class="modal-header">
+                              <h5 class="modal-title" id="DeleteModalLabel">Удалить лицо</h5>
+                              <button type="button" class="btn btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                           </div>
+                           <div class="modal-body">
+                              Лицо направленное на проверку будет удалено. Продолжить?
+                           </div>
+                           <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+                              <form action="{% url 'person_delete' person.research.id person.id %}" method="POST">
+                                 {% csrf_token %}
+                                 <button class="btn btn-primary">Удалить</button>
+                              </form>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </td>
+         </tr>
+      {% endfor %}
+   {% endif %}
+{% endblock table_body %}
