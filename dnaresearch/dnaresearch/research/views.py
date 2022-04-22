@@ -1,67 +1,143 @@
-from django.http import HttpResponse, HttpResponseNotFound
+import os
+import mimetypes
+from tkinter import N
+from django.http import HttpResponse, HttpResponseNotFound, FileResponse, StreamingHttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+
 
 from . import forms
 from .services import *
 from . import models
 
 
-class Researches(ListView):
+# -------Research Mixin--------
+class ResearchMixin:
     model = models.Research
-    template_name = 'research/research.html'
+
+
+class ResearchSingleMixin(ResearchMixin):
+    pk_url_kwarg = 'research_id'
+
+
+class ResearchListMixin(ResearchMixin):
     context_object_name = 'researches'
 
 
-class Research(DetailView):
-    model = models.Research
+class ResearchFormMixin(ResearchSingleMixin):
+    form_class = forms.AddResearch
+    success_url = reverse_lazy('register')
+
+
+# Research ListObject
+class Researches(ResearchListMixin, ListView):
     template_name = 'research/research.html'
 
 
-class Persons(ListView):
+# Research SingleObject
+class Research(ResearchSingleMixin, DetailView):
+    template_name = 'research/research_detail.html'  
+
+
+class ResearchForm(ResearchFormMixin, CreateView):
+    template_name = 'research/research_form.html'
+
+
+class ResearchUpdateForm(ResearchFormMixin, UpdateView):
+    template_name = 'research/research_form.html'
+
+
+class ResearchRegister(ResearchFormMixin, UpdateView):
+    template_name = 'research/research_register.html'
+    form_class = forms.RegisterForm
+
+
+class ResearchDeleteForm(ResearchSingleMixin, DeleteView):
+    success_url = reverse_lazy('register')
+
+
+# Person
+# Person Mixins
+class PersonMixin:
     model = models.Person
-    template_name = 'research/all_persons.html'
+
+
+class PersonSingleMixin(PersonMixin):
+    pk_url_kwarg = 'person_id'
+
+
+class PersonListMixin(PersonMixin):
     context_object_name = 'persons'
 
 
-class Person(DetailView):
-    model = models.Person
-    template_name = 'research/research.html'
+class PersonRedirectMixin(PersonSingleMixin):
+    def get_success_url(self):
+        return reverse_lazy('persons', kwargs={'research_id': self.kwargs['research_id']})
 
 
-def research(request, research_id):
-    return render(request, 'research/base.html', {'title': f'Исследование № {research_id}'})
+class PersonFormMixin(PersonRedirectMixin):
+    form_class = forms.AddPerson
+    template_name = 'research/person_form.html'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['check_related'] = check_related(self.kwargs['research_id'])
+        return context
 
 
-def persons(request, research_id):
-    context = {
-        'research_id': research_id
-    }
-    return render(request, 'research/persons.html', context=context)
+# Person ListObject
+class AllPersons(PersonListMixin, ListView):
+    template_name = 'research/all_persons.html'
 
 
-def all_persons(request):
-    context = {
-        'persons': get_all_persons()
-    }
-    return render(request, 'research/all_persons.html', context=context)
+class Persons(PersonListMixin, ListView):
+    template_name = 'research/persons.html'
+
+    def get_queryset(self):
+        return get_person_by_research_id(research_id=self.kwargs['research_id'])
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['research_id'] = self.kwargs['research_id']
+        return context
+      
+
+# Person SingleObject
+class Person(PersonSingleMixin, DetailView):
+    template_name = 'research/person_detail.html'
 
 
-def add_person(request, research_id):
-    if request.method == 'POST':
-        form = forms.AddPerson(request.POST)
-        if form.is_valid():
-            try:
-                models.Person.objects.create(**form.cleaned_data, research_id=research_id)
-                return redirect('persons', research_id)
-            except:
-                form.add_error(None, 'Ошибка добавления')
-    else:
-        form = forms.AddPerson()
-    path = reverse('add_person', kwargs={'research_id': research_id})
-    return render(request, 'research/add_person.html', {'form': form, 'path': path})
+class PersonForm(PersonFormMixin, CreateView):
 
+    def form_valid(self, form):
+        fields = form.save(commit=False)
+        fields.research_id = self.kwargs['research_id']
+        fields.save()
+        return super().form_valid(form)
+
+
+class PersonUpdate(PersonFormMixin, UpdateView):
+    pass
+
+
+class PersonDelete(PersonRedirectMixin, DeleteView):
+    pass
+
+
+def single_export(request):
+    research_id = (request.GET.get('research_id', None))
+    if research_id is None:
+        return HttpResponseNotFound('<h1>Страница не найдена</h1>')
+    elif isinstance(research_id, int):
+        path = research_export(list(research_id))
+    elif isinstance(research_id, str):
+        research_id = research_id.split(sep=',')
+        path = research_export(research_id)
+    with open(path, 'rb') as fh:
+            response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")
+            response['Content-Disposition'] = 'inline; filename=' + os.path.basename(path)
+            return response
 
 def pageNotFound(request, exception):
     return HttpResponseNotFound('<h1>Страница не найдена</h1>')

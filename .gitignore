@@ -1,4 +1,6 @@
 venv
+__pycache__
 migrations/*
 .idea
 db.sqlite3
+export_file.txt

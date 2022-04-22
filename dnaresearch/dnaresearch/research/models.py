@@ -2,8 +2,16 @@ from django.db import models
 from django.urls import reverse
 
 
+class CriminalArticles(models.Model):
+    article = models.CharField(max_length=1000)
+
+    class Meta:
+        verbose_name = 'Статьи УК РФ'
+        verbose_name_plural = 'Статьи УК РФ'
+
+
 class Research(models.Model):
-    reg_number = models.IntegerField(blank=True, default=None)
+    reg_number = models.IntegerField(blank=True, default=None, null=True)
     date_of_record = models.DateField(auto_now_add=True)
     initiator_department = models.TextField()
     initiator_post = models.TextField()
@@ -24,7 +32,7 @@ class Research(models.Model):
     incident_date = models.DateField(blank=True, default=None)
     address = models.TextField(blank=True, default=None)
     relative_search = models.BooleanField(default=False)
-    reg_date = models.DateField(blank=True, default=None)
+    reg_date = models.DateField(blank=True, default=None, null=True)
 
     class Meta:
         verbose_name = 'Исследования'
@@ -34,14 +42,25 @@ class Research(models.Model):
         return self.reg_number
 
     def get_absolute_url(self):
-        return reverse('research', kwargs={'research_id': self.pk})
+        return reverse('research_detail', kwargs={'research_id': self.pk})
+
+    def get_url_for_persons(self):
+        return reverse('persons', kwargs={'research_id': self.pk})
+
+    def get_url_for_research_update(self):
+        return reverse('research_update_form', kwargs={'research_id': self.pk})
 
 
 class Person(models.Model):
+
+    class Gender(models.TextChoices):
+        MALE = 'Мужской'
+        FEMALE = 'Женский'
+
     surname = models.CharField(max_length=255, verbose_name='Фамилия')
     name = models.CharField(max_length=255)
     patronymic = models.CharField(max_length=255)
-    male = models.BooleanField()
+    gender = models.CharField(max_length=7, choices=Gender.choices, default=Gender.MALE)
     birthday = models.DateField()
     birthplace = models.TextField()
     relation = models.CharField(max_length=255, blank=True, null=True, default=None)
@@ -56,4 +75,12 @@ class Person(models.Model):
         return f'{self.surname} {self.name} {self.patronymic} {self.birthday} г.р.'
 
     def get_absolute_url(self):
-        return reverse('person', kwargs={'research_id': self.research.primary_key, 'person_id': self.pk})
+        return reverse('person_detail', kwargs={'research_id': self.research.pk, 'person_id': self.pk})
+
+    def get_url_for_update(self):
+        return reverse('person_update', kwargs={'research_id': self.research.pk, 'person_id': self.pk})
+
+    def get_url_for_delete(self):
+        return reverse('person_delete', kwargs={'research_id': self.research.pk, 'person_id': self.pk})
+
+    

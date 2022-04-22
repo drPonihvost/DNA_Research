@@ -1,52 +1,52 @@
-{% extends 'research/base.html' %}
-{% load research_tags %}
+{% extends 'research/base_person_table.html' %}
 {% block title %}Лица на проверку{% endblock %}
 
-{% block content %}
-<div id="content">
-	<div class="container-fluid">
-		<table class="table table-bordered" style="text-align: center; line-height: 1; vertical-align: middle;">
-			<thead>
-				<tr style="text-align: center;">
-					<th scope="col">Выбор</th>
-					<th scope="col">Фамилия</th>
-					<th scope="col">Имя</th>
-					<th scope="col">Отчество</th>
-					<th scope="col">Пол</th>
-					<th scope="col">Дата рождения</th>
-					<th scope="col">Место рождения</th>
-					<th scope="col">Родственник</th>
-					<th scope="col">Действия</th>
-				</tr>
-			</thead>
-			<tbody style="vertical-align: top;">
-				{% if persons %}
-				{% for person in persons %}
-				<tr>
-					<th scope="row" style="vertical-align: middle;">
-						<input type="checkbox" class="form-check-input" value="{{ research.id }}">
-					</th>
-					<td>{{ person.surname }}</td>
-					<td>{{ person.name }}</td>
-					<td>{{ person.patronymic }}</td>
-					<td>{% if person.male %}Мужской{% else %}Женский{% endif %}</td>
-					<td>{{ person.birthday }}</td>
-					<td>{{ person.birthplace }}</td>
-					<td>
-						{% if person.related %}
-						{{ person.related }}
-						{% endif %}
-					</td>
-					<td>
-						<div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-							<a href="#" class="btn btn-primary">Редактировать</a>
-						</div>
-					</td>
-				</tr>
-				{% endfor %}
-				{% endif %}
-			</tbody>
-		</table>
-	</div>
-</div>
-{% endblock %}
+{% block table_header %}
+   <th scope="col">№</th>
+   <th scope="col">Фамилия</th>
+   <th scope="col">Имя</th>
+   <th scope="col">Отчество</th>
+   <th class="d-none d-md-table-cell" scope="col">Пол</th>
+   <th scope="col">Дата рождения</th>
+   <th class="d-none d-lg-table-cell" scope="col" >Место рождения</th>
+   <th scope="col">Родственник</th>
+   <th scope="col">Дата поступления</th>
+   <th scope="col">Дата регистрации</th>
+   <th scope="col">Действия</th>
+{% endblock table_header %}
+
+{% block table_body %}
+   {% if persons %}
+      {% for person in persons %}
+         <tr>
+            <th class="text-center" scope="row">
+               {{ forloop.counter }}
+            </th>
+            <td>{{ person.surname }}</td>
+            <td>{{ person.name }}</td>
+            <td>{{ person.patronymic }}</td>
+            <td class="d-none d-md-table-cell">{{ person.gender }}</td>
+            <td>{{ person.birthday|date:"d.m.Y" }}</td>
+            <td class="d-none d-lg-table-cell">{{ person.birthplace }}</td>
+            <td>
+               {% if person.related %}
+               {{ person.related }}
+               {% endif %}
+            </td>
+            <td>{{ person.research.date_of_record|date:"d.m.Y" }}</td>
+            <td>
+               {% if person.research.reg_date %}
+                  {{ person.research.reg_date|date:"d.m.Y" }}
+               {% else %}
+                  <span class="text-warning">Отсутствует</span>
+               {% endif %}
+            </td>
+            <td>
+               <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                  <a href="{{ person.research.get_absolute_url }}" class="btn btn-primary">Направление</a>
+               </div>
+            </td>
+         </tr>
+      {% endfor %}
+   {% endif %}
+{% endblock table_body %}

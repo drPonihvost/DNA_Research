@@ -1,55 +1,93 @@
 {% extends 'research/base.html' %}
+{% load research_tags %}
 {% block title %}Журнал{% endblock %}
+{% block command %}
+<a class="btn btn-primary" href="{% url 'research_form' %}" role="button">Добавить</a>
+<a class="btn btn-primary mx-2" href="#" role="button">Сканировать</a>
+<a class="btn btn-primary" href="#" role="button">Экспорт</a>
+{% endblock %}
 
 {% block content %}
 <div class="container-fluid">
    <div class="row">
-      <div class="col-12">
-         <table class="table table-bordered" style="text-align: center; line-height: 1; vertical-align: middle;">
-            <thead>
-               <tr style="text-align: center;">
+      <div class="col-12 table-responsive">
+         <table class="table table-striped table-sm align-middle lh-1 my-2">
+            <thead class="text-center">
+               <tr>
                   <th scope="col">Выбор</th>
-                  <th scope="col">Номер исследования</th>
-                  <th scope="col">Дата регистрации</th>
-                  <th scope="col">Сведения об инициаторе исследования</th>
-                  <th scope="col">№ уголовного дела (материалы проверки), вид перступления (правонарушения)</th>
-                  <th scope="col">Дата и адрес совершения перступления (правонарушения)</th>
+                  <th scope="col">Дата поступления</th>
+                  <th scope="col">Номер</th>
+                  <th class="d-none d-lg-table-cell" scope="col">Сведения об инициаторе исследования</th>
+                  <th scope="col">
+                     <span class="d-xs-table-cell d-lg-none">№ материалов</span>
+                     <span class="d-none d-lg-table-cell d-xl-none">№ материалов, ст. УК РФ</span>
+                     <span class="d-none d-xl-table-cell">№ материалов, ст. УК РФ, вид перступления (правонарушения)</span>
+                  </th>
+                  <th class="d-none d-lg-table-cell" scope="col">Дата и адрес совершения перступления (правонарушения)</th>
                   <th scope="col">Количество образцов</th>
                   <th scope="col">Действия</th>
                </tr>
             </thead>
-            <tbody style="vertical-align: top;">
+            <tbody>
                {% if researches %}
                   {% for research in researches %}
                   <tr>
-                     <th scope="row" style="vertical-align: middle;">
-                        <input type="checkbox" class="form-check-input" value="{{ research.id }}">
+                     <th class="text-center" scope="row">
+                        <input type="checkbox" class="form-check-input" name="{{ research.id }}">
                      </th>
-                     <td>{{ research.reg_number }}</td>
-                     <td>{{ research.reg_date }}</td>
                      <td>
-                        <p>{{ research.initiator_post }} {{ research.initiator_department }}<br>
-                        {{ research.initiator_rank }}<br>
-                        {{ research.initiator_name.0|upper }}.{{ research.initiator_patronymic.0|upper }}. {{ research.initiator_surname|title }}</p>
+                        {{ research.date_of_record|date:"d.m.Y" }}
                      </td>
-                     <td>
-                        <p>
-                           {{ research.event_number }}<br>
-                           ст. {{ research.article }}<br>
-                           {{ research.plot }}
-                        </p>
+                     <td class="d-table-cell text-center align-middle">
+                        {% if research.reg_number %}
+                        {{ research.reg_number }} от
+                        {{ research.reg_date|date:"d.m.Y" }}
+                        {% else %}
+                        <span class="text-warning">Отсутствует</span>
+                        {% endif %}
                      </td>
-                     <td>
-                        <p>
-                           {{ research.incident_date }}<br>
-                           {{ research.address }}
-                        </p>
+                     <td class="d-none d-lg-table-cell">
+                        <p class="my-0 d-none d-xl-inline-block">{{ research.initiator_post }} {{ research.initiator_department }}</p>
+                        <p class="my-0 d-none d-xxl-inline-block">{{ research.initiator_rank }}</p>
+                        <p class="my-0">{{ research.initiator_name.0|upper }}.{{ research.initiator_patronymic.0|upper }}. {{ research.initiator_surname|title }}</p>
                      </td>
-                     <td></td>
+                     <td class="d-table-cell">
+                        <p class="d-table-inline-block my-0 text-nowrap">{{ research.event_number }}</p>
+                        <p class="d-none d-lg-inline-block my-0">ст. {{ research.article }}</p>
+                        <p class="d-none d-xl-inline-block my-0">{{ research.plot }}</p>
+                     </td>
+                     <td class="d-none d-lg-table-cell">
+                        <p class="my-0">{{ research.incident_date|date:"d.m.Y" }}</p>
+                        <p class="my-0">{{ research.address }}</p>
+                     </td>
+                     <td class="text-center">{% get_person_count research_id=research.id %}</td>
                      <td>
                         <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                           <a href="#" class="btn btn-primary">Редактировать</a>
-                           <a href="{{ research.get_absolute_url }}/person" class="btn btn-primary">Просмотр лиц</a>
+                           <a href="{% url 'research_register' research.id %}" class="btn btn-primary">Зарегистрировать</a>
+                           <a href="{{ research.get_absolute_url }}" class="btn btn-primary">Подробнее</a>
+                           <a type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#DeleteModal_{{ research.id }}">Удалить</a>
+                           <!-- Modal -->
+                           <div class="modal fade" id="DeleteModal_{{ research.id }}" tabindex="-1" aria-labelledby="DeleteModalLabel" aria-hidden="true">
+                              <div class="modal-dialog">
+                                 <div class="modal-content">
+                                    <div class="modal-header">
+                                       <h5 class="modal-title" id="DeleteModalLabel">Удалить направление</h5>
+                                       <button type="button" class="btn btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                       Удаление направления так же удалит и данные всех связанных лиц. Продолжить?
+                                    </div>
+                                    <div class="modal-footer">
+                                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+                                       <form action="{% url 'research_delete' research.id %}" method="POST">
+                                          {% csrf_token %}
+                                          <button class="btn btn-primary">Удалить</button>
+                                       </form>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <a href="{{ research.get_url_for_persons }}" class="btn btn-primary">Лица</a>
                         </div>
                      </td>
                   </tr>
@@ -60,4 +98,5 @@
       </div>
    </div>
 </div>
-{% endblock %}
+{% endblock content %}
+

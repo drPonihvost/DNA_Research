@@ -13,3 +13,11 @@
 4. Экспорт в txt файл отмеченных исследований
 
 Журнал проверяемых лиц (person):
+
+Разверстка:
+cd .\dnaresearch\dnaresearch\
+python manage.py makemigrations
+python manage.py migrate
+python manage.py loaddata criminal_articles.json
+python manage.py loaddata research_data.json
+python manage.py runserver
