@@ -1,8 +1,10 @@
 {% extends 'research/base.html' %}
+{% load static %}
 
 {% block content %}
 <div class="container-xxl mt-4">
-   <form action="{% url 'research_form' %}" method="post">
+   <button type="button" class="btn btn-primary" id="qr-button">Заполнить из QR</button>
+   <form action="{% url 'research_form' %}" method="post" id="research-form">
       {% csrf_token %}
       <div class="row row-cols-1 row-cols-md-2 my-4">
          <div class="col">
@@ -77,5 +79,29 @@
          </div>
       </div>
    </form>
+   <!-- Такую модалку лучше вынести в шаблон и переиспользовать  -->
+   <div class="modal fade" id="export-modal">
+      <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title">Добавить</h5>
+         </div>
+         <div class="modal-body">
+            <textarea class="form-control mb-2" placeholder="Инициатор" id="export-modal-initiator-textarea" rows="3"></textarea>
+            <textarea class="form-control mb-2" placeholder="Исполнитель" id="export-modal-executor-textarea" rows="3"></textarea>
+            <textarea class="form-control mb-2" placeholder="Событие" id="export-modal-event-textarea" rows="3"></textarea>
+         </div>
+         <div class="modal-footer">
+            <button type="button" id="export-modal-close-button" class="btn btn-secondary">Закрыть</button>
+            <button type="button" id="export-modal-submit-button"class="btn btn-primary">Применить</button>
+         </div>
+      </div>
+      </div>
+   </div>
 </div>
 {% endblock %}
+
+{% block scripts %}
+<script src="{% static 'research/js/qr-form-filler.js'%}"></script>
+<script src="{% static 'research/js/research-form.js'%}"></script>
+{% endblock scripts %}

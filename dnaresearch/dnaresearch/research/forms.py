@@ -4,7 +4,7 @@ from . import models
 
 class AddPerson(forms.ModelForm):
     CHOICES=(('Мужской','Мужской'), ('Женский','Женский'))
-    gender = forms.TypedChoiceField(choices=CHOICES, widget=forms.RadioSelect(attrs={'class': 'form-check-input mb-2', 'type': 'radio'}))
+    gender = forms.TypedChoiceField(choices=CHOICES, widget=forms.RadioSelect(attrs={'class': 'mb-2', 'type': 'radio'}))
     class Meta:
         model = models.Person
         fields = ['surname', 'name', 'patronymic', 'gender', 'birthday', 'birthplace', 'relation']
