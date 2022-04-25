@@ -77,7 +77,7 @@ class Person(models.Model):
     inn = models.CharField(max_length=25, blank=True, null=True, default=None)
     snils = models.CharField(max_length=11, blank=True, null=True, default=None)
     victim = models.BooleanField(default=False, blank=True, null=True,)
-    nationality = models.ForeignKey(Research, on_delete=models.CASCADE, blank=True)
+    nationality = models.ForeignKey(Nationality, on_delete=models.SET_NULL, blank=True, null=True)
     citizenship = models.CharField(max_length=255, blank=True, null=True, default=None)
 
     research = models.ForeignKey(Research, on_delete=models.CASCADE, blank=True)
