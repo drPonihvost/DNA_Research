@@ -1,16 +1,18 @@
 {% extends 'research/base_person_card.html' %}
+{% load static %}
 {% load research_tags %}
 
+{% block qr_button %}
+<button type="button" class="btn btn-primary" id="qr-button">Заполнить из QR</button>
+{% endblock qr_button %}
 {% block person_card_body %}
-<form action="{{ path }}" method="post">
+<form action="{{ path }}" method="post" id="person-form">
    {% csrf_token %}
    <div class="mb-3 p-2">
       {{ form.surname }}
       {{ form.name }}
       {{ form.patronymic }}
-      <div class="form-check">
-         {{ form.gender }}
-      </div>
+      {{ form.gender }}
       {{ form.birthday }}
       {{ form.birthplace }}
       {% if check_related %}
@@ -23,4 +25,24 @@
       </div>
    </div>
 </form>
+<div class="modal fade" id="export-modal">
+   <div class="modal-dialog" role="document">
+   <div class="modal-content">
+      <div class="modal-header">
+         <h5 class="modal-title">Добавить</h5>
+      </div>
+      <div class="modal-body">
+         <textarea class="form-control mb-2" placeholder="Лицо" id="export-modal-person-textarea" rows="3"></textarea>
+      </div>
+      <div class="modal-footer">
+         <button type="button" id="export-modal-close-button" class="btn btn-secondary">Закрыть</button>
+         <button type="button" id="export-modal-submit-button"class="btn btn-primary">Применить</button>
+      </div>
+   </div>
+   </div>
 {% endblock person_card_body %}
+
+{% block scripts %}
+<script src="{% static 'research/js/qr-form-filler.js'%}"></script>
+<script src="{% static 'research/js/person-form.js'%}"></script>
+{% endblock %}
