@@ -51,6 +51,11 @@ class Research(models.Model):
         return reverse('research_update_form', kwargs={'research_id': self.pk})
 
 
+class Nationality(models.Model):
+    name = models.CharField(max_length=255)
+    group = models.CharField(max_length=255, blank=True, null=True, default=None)
+
+
 class Person(models.Model):
 
     class Gender(models.TextChoices):
@@ -64,6 +69,16 @@ class Person(models.Model):
     birthday = models.DateField()
     birthplace = models.TextField()
     relation = models.CharField(max_length=255, blank=True, null=True, default=None)
+    passport_series = models.CharField(max_length=6, blank=True, null=True, default=None)
+    passport_number = models.CharField(max_length=4, blank=True, null=True, default=None)
+    pasport_date_of_issue = models.DateField(blank=True, null=True, default=None)
+    pasport_division_code = models.CharField(max_length=6, blank=True, null=True, default=None)
+    pasport_division_name = models.CharField(max_length=255, blank=True, null=True, default=None)
+    inn = models.CharField(max_length=25, blank=True, null=True, default=None)
+    snils = models.CharField(max_length=11, blank=True, null=True, default=None)
+    victim = models.BooleanField(default=False, blank=True, null=True,)
+    nationality = models.ForeignKey(Nationality, on_delete=models.SET_NULL, blank=True, null=True)
+    citizenship = models.CharField(max_length=255, blank=True, null=True, default=None)
 
     research = models.ForeignKey(Research, on_delete=models.CASCADE, blank=True)
 
