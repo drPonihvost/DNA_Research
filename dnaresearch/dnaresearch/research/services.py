@@ -30,16 +30,6 @@ def get_all_persons():
 def prepare_line(line):
     return line[0].upper() + line[1::]
 
-def create_person_data(person):
-    return [
-        prepare_line(person.surname),
-        prepare_line(person.name),
-        prepare_line(person.patronymic),
-        str(person.birthday),
-        person.birthplace,
-        person.relation
-    ]
-
 
 def research_export(researches_id: list):
     file_name = 'export_file.txt'

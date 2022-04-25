@@ -3,4 +3,5 @@ __pycache__
 migrations/*
 .idea
 db.sqlite3
-export_file.txt
+export_file
+dnaresearch/dnaresearch/export_file.txt
