@@ -28,7 +28,7 @@ def get_all_persons():
 
 
 def prepare_line(line):
-    return line[0].upper() + line[1::]
+    return line[0].upper() + line[1::] if line else ''
 
 
 def research_export(researches_id: list):
@@ -50,8 +50,8 @@ def research_export(researches_id: list):
                     person.birthplace,
                     research.event_number,
                     prepare_line(research.plot),
-                    research.article,
-                    prepare_line(person.relation) if research.relative_search else ''
+                    research.article if research.article else '',
+                    prepare_line(person.relation)
                 ]
                 file.write('\t'.join(export_data) + '\n')
     return file_name

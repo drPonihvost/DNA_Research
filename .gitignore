@@ -1,7 +1,6 @@
 venv
 __pycache__
-migrations/*
+dnaresearch/dnaresearch/research/migrations/*
 .idea
 db.sqlite3
-export_file
-dnaresearch/dnaresearch/export_file.txt
+/dnaresearch/dnaresearch/export_file.txt
