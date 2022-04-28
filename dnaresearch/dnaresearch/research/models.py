@@ -50,6 +50,9 @@ class Research(models.Model):
     def get_url_for_research_update(self):
         return reverse('research_update_form', kwargs={'research_id': self.pk})
 
+    def get_export_url(self):
+        return reverse('research_export') + f'?research_id={self.pk}'
+
 
 class Nationality(models.Model):
     name = models.CharField(max_length=255)
