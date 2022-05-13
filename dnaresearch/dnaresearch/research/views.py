@@ -1,6 +1,4 @@
 import os
-import mimetypes
-from tkinter import N
 from django.http import HttpResponse, HttpResponseNotFound, FileResponse, StreamingHttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
@@ -125,15 +123,19 @@ class PersonDelete(PersonRedirectMixin, DeleteView):
     pass
 
 
-def single_export(request):
-    research_id = (request.GET.get('research_id', None))
-    if research_id is None:
+def export_research(request):
+    researches_id = (request.GET.get('research_id', None))
+    if isinstance(researches_id, int):
+        researches_id = list(researches_id)
+    elif isinstance(researches_id, str):
+        researches_id = researches_id.split(sep=',')
+    else:
         return HttpResponseNotFound('<h1>Страница не найдена</h1>')
-    elif isinstance(research_id, int):
-        path = research_export(list(research_id))
-    elif isinstance(research_id, str):
-        research_id = research_id.split(sep=',')
-        path = research_export(research_id)
+    
+    export_file = ExportFile(researches_id)
+    export_file.create_txt()
+    path = ExportFile.FILE_NAME
+
     with open(path, 'rb') as fh:
             response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")
             response['Content-Disposition'] = 'inline; filename=' + os.path.basename(path)
