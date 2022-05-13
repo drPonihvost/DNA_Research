@@ -2,6 +2,7 @@ from django.db import models
 from django.urls import reverse
 
 
+
 class CriminalArticles(models.Model):
     article = models.CharField(max_length=1000)
 

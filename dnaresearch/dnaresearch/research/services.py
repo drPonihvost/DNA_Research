@@ -33,7 +33,7 @@ def prepare_line(line):
 
 def research_export(researches_id: list):
     file_name = 'export_file.txt'
-    with open(file_name, 'w') as file:
+    with open(file_name, 'w', encoding="windows-1251") as file:
         file.write('\t'.join(EXPORT_FILE_HEADER) + '\n')
         for research_id in researches_id:
             research = get_research_by_id(research_id)
