@@ -4,11 +4,17 @@ from django.urls import reverse
 
 
 class CriminalArticles(models.Model):
-    article = models.CharField(max_length=1000)
+    """Унифицированный список статей УК РФ"""
+    article = models.CharField(max_length=1000, verbose_name='Статья УК РФ')
+
+    def __str__(self):
+        return self.article
 
     class Meta:
+        db_table = 'Статьи УК РФ'
         verbose_name = 'Статьи УК РФ'
         verbose_name_plural = 'Статьи УК РФ'
+        ordering = ['article']
 
 
 class Research(models.Model):

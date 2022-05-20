@@ -1,19 +1,17 @@
 import os
-import mimetypes
-from tkinter import N
 from django.http import HttpResponse, HttpResponseNotFound, FileResponse, StreamingHttpResponse
-from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 
+from core.views import ErrorHadling, error_hadling
 from . import forms
-from .services import *
+from . import services
 from . import models
 
 
 # -------Research Mixin--------
-class ResearchMixin:
+class ResearchMixin(ErrorHadling):
     model = models.Research
 
 
@@ -82,7 +80,7 @@ class PersonFormMixin(PersonRedirectMixin):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['check_related'] = check_related(self.kwargs['research_id'])
+        context['check_related'] = services.check_related(self.kwargs['research_id'])
         return context
 
 
@@ -95,7 +93,7 @@ class Persons(PersonListMixin, ListView):
     template_name = 'research/persons.html'
 
     def get_queryset(self):
-        return get_person_by_research_id(research_id=self.kwargs['research_id'])
+        return services.get_person_by_research_id(research_id=self.kwargs['research_id'])
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -125,15 +123,16 @@ class PersonDelete(PersonRedirectMixin, DeleteView):
     pass
 
 
+@error_hadling
 def single_export(request):
     research_id = (request.GET.get('research_id', None))
     if research_id is None:
         return HttpResponseNotFound('<h1>Страница не найдена</h1>')
     elif isinstance(research_id, int):
-        path = research_export(list(research_id))
+        path = services.research_export(list(research_id))
     elif isinstance(research_id, str):
         research_id = research_id.split(sep=',')
-        path = research_export(research_id)
+        path = services.research_export(research_id)
     with open(path, 'rb') as fh:
             response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")
             response['Content-Disposition'] = 'inline; filename=' + os.path.basename(path)
