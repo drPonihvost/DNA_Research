@@ -1,7 +1,6 @@
 from .models import *
 
 
-
 def get_all_research():
     return Research.objects.all()
 
@@ -29,10 +28,10 @@ def output_capital(line):
 class ExportFile:
     EXPORT_FILE_HEADER = [
         'Инициалы, Фамилия', 'должность', 'Орган назначивший',
-        'Фамилия', 'Имя', 'Отчество', 'Дата рождения',	'место рождения',
-        '№ дела (с указанием категории: у/д, РД, КУСП и т.д.)',	'Состав преступления',
+        'Фамилия', 'Имя', 'Отчество', 'Дата рождения', 'место рождения',
+        '№ дела (с указанием категории: у/д, РД, КУСП и т.д.)', 'Состав преступления',
         'Статья УК', 'Степень родства (заполняется для родственников разыскиваемых)'
-        ]
+    ]
     FILE_NAME = 'export_file.txt'
     ENCODING = 'windows-1251'
     SEPARATOR = '\t'
@@ -41,9 +40,8 @@ class ExportFile:
     def __init__(self, researches_id: list) -> None:
         self.researches_id = researches_id
 
-    @staticmethod
-    def write_header(file):
-        file.write(ExportFile.SEPARATOR.join(ExportFile.EXPORT_FILE_HEADER) + ExportFile.END)
+    def write_header(self, file):
+        file.write(self.SEPARATOR.join(self.EXPORT_FILE_HEADER) + self.END)
 
     @staticmethod
     def output_capital(string: str) -> str:
@@ -68,9 +66,9 @@ class ExportFile:
                     research.article if research.article else '',
                     output_capital(person.relation)
                 ]
-                file.write(ExportFile.SEPARATOR.join(export_data) + ExportFile.END)
+                file.write(self.SEPARATOR.join(export_data) + self.END)
 
     def create_txt(self) -> None:
-        with open(ExportFile.FILE_NAME, 'w', encoding=ExportFile.ENCODING) as file:
+        with open(self.FILE_NAME, 'w', encoding=self.ENCODING) as file:
             self.write_header(file)
             self.write_data(file)
