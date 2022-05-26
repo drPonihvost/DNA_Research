@@ -1,4 +1,6 @@
 from django import forms
+from django.core.exceptions import ValidationError
+from django.utils.translation import gettext_lazy as _
 from . import models
 
 
@@ -20,6 +22,8 @@ class AddPerson(forms.ModelForm):
 
 
 class AddResearch(forms.ModelForm):
+
+
     class Meta:
         model = models.Research
         fields = ['initiator_post', 'initiator_department', 'initiator_rank',
@@ -51,6 +55,17 @@ class AddResearch(forms.ModelForm):
 
 
 class RegisterForm(forms.ModelForm):
+    # def clean(self):
+    #     super().clean()
+    #     errors = {}
+    #     if not isinstance(self.cleaned_data['reg_number'], int) or self.cleaned_data['reg_number'] < 0:
+    #         errors['reg_number'] = ValidationError(f"{self.cleaned_data['reg_number']} недопустимое значение")
+    #     if self.cleaned_data['reg_number'] and self.cleaned_data['reg_date'] and not models.Research.verify_registration(self.cleaned_data['reg_number'], self.cleaned_data['reg_date']):
+    #         errors['reg_number'] = ValidationError(f"Номер {self.cleaned_data['reg_number']} уже существует за годом {self.cleaned_data['reg_date'].year}")
+    #     if errors:
+    #         raise ValidationError(errors)
+        
+    
     class Meta:
         model = models.Research
         fields = ['reg_number', 'reg_date']

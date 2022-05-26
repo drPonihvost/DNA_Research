@@ -17,10 +17,14 @@
                   {{ form.initiator_post }}
                   {{ form.initiator_department.errors }}
                   {{ form.initiator_department }}
+                  {{ form.initiator_rank.errors }}
                   {{ form.initiator_rank }}
                   <div class="input-group">
+                     {{ form.initiator_surname.errors }}
                      {{ form.initiator_surname }}
+                     {{ form.initiator_name.errors }}
                      {{ form.initiator_name }}
+                     {{ form.initiator_patronymic.errors }}
                      {{ form.initiator_patronymic }}
                   </div>
                </div>
@@ -36,10 +40,14 @@
                   {{ form.executor_post}}
                   {{ form.executor_department.errors }}
                   {{ form.executor_department}}
+                  {{ form.executor_rank.errors}}
                   {{ form.executor_rank}}
                   <div class="input-group">
+                     {{ form.executor_surname.errors}}
                      {{ form.executor_surname}}
+                     {{ form.executor_name.errors}}
                      {{ form.executor_name}}
+                     {{ form.executor_patronymic.errors}}
                      {{ form.executor_patronymic}}
                   </div>
                </div>
@@ -55,10 +63,15 @@
                <div class="card-body">
                   <div class="row">
                      <div class="col-12 col-md-6">
+                        {{ form.event_number.errors }}
                         {{ form.event_number }}
+                        {{ form.formation_date.errors }}
                         {{ form.formation_date }}
+                        {{ form.article.errors }}
                         {{ form.article }}
+                        {{ form.incident_date.errors }}
                         {{ form.incident_date }}
+                        {{ form.address.errors }}
                         {{ form.address }}
                         <div class="form-check form-switch">
                            <label class="form-check-label" for="flexSwitchCheckDefault">Родственный поиск</label>
@@ -66,6 +79,7 @@
                         </div>
                      </div>
                      <div class="col-12 col-md-6">
+                        {{ form.plot.errors }}
                         {{ form.plot }}
                         <div>
                            <button type="submit" class="btn btn-primary mt-2">Добавить</button>

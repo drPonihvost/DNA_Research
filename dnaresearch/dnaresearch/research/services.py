@@ -1,11 +1,16 @@
+import os
+
+from dnaresearch.settings import BASE_DIR
+
 from .models import *
 
 EXPORT_FILE_HEADER = [
     'Инициалы, Фамилия', 'должность', 'Орган назначивший',
-    'Фамилия', 'Имя', 'Отчество', 'Дата рождения',	'место рождения',
-    '№ дела (с указанием категории: у/д, РД, КУСП и т.д.)',	'Состав преступления',
+    'Фамилия', 'Имя', 'Отчество', 'Дата рождения', 'место рождения',
+    '№ дела (с указанием категории: у/д, РД, КУСП и т.д.)', 'Состав преступления',
     'Статья УК', 'Степень родства (заполняется для родственников разыскиваемых)'
 ]
+
 
 def get_all_research():
     return Research.objects.all()
@@ -32,7 +37,7 @@ def prepare_line(line):
 
 
 def research_export(researches_id: list):
-    file_name = 'export_file.txt'
+    file_name = os.path.join(BASE_DIR, 'export_file.txt')
     with open(file_name, 'w', encoding="windows-1251") as file:
         file.write('\t'.join(EXPORT_FILE_HEADER) + '\n')
         for research_id in researches_id:
