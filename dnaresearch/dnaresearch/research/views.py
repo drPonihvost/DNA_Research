@@ -1,7 +1,8 @@
 import os
+from webbrowser import get
 from django.http import HttpResponse, HttpResponseNotFound, FileResponse, StreamingHttpResponse
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import View, ListView, DetailView, CreateView, UpdateView, DeleteView
 
 
 from core.views import ErrorHadling, error_hadling
@@ -38,6 +39,7 @@ class Research(ResearchSingleMixin, DetailView):
     template_name = 'research/research_detail.html'  
 
 
+
 class ResearchForm(ResearchFormMixin, CreateView):
     template_name = 'research/research_form.html'
 
@@ -57,7 +59,7 @@ class ResearchDeleteForm(ResearchSingleMixin, DeleteView):
 
 # Person
 # Person Mixins
-class PersonMixin:
+class PersonMixin(ErrorHadling):
     model = models.Person
 
 
