@@ -1,3 +1,7 @@
+import os
+
+from dnaresearch.settings import BASE_DIR
+
 from .models import *
 
 

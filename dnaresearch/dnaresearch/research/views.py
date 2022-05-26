@@ -1,17 +1,17 @@
 import os
 from django.http import HttpResponse, HttpResponseNotFound, FileResponse, StreamingHttpResponse
-from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import View, ListView, DetailView, CreateView, UpdateView, DeleteView
 
 
+from core.views import ErrorHadling, error_hadling
 from . import forms
-from .services import *
+from . import services
 from . import models
 
 
 # -------Research Mixin--------
-class ResearchMixin:
+class ResearchMixin(ErrorHadling):
     model = models.Research
 
 
@@ -38,6 +38,7 @@ class Research(ResearchSingleMixin, DetailView):
     template_name = 'research/research_detail.html'  
 
 
+
 class ResearchForm(ResearchFormMixin, CreateView):
     template_name = 'research/research_form.html'
 
@@ -57,7 +58,7 @@ class ResearchDeleteForm(ResearchSingleMixin, DeleteView):
 
 # Person
 # Person Mixins
-class PersonMixin:
+class PersonMixin(ErrorHadling):
     model = models.Person
 
 
@@ -80,7 +81,7 @@ class PersonFormMixin(PersonRedirectMixin):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['check_related'] = check_related(self.kwargs['research_id'])
+        context['check_related'] = services.check_related(self.kwargs['research_id'])
         return context
 
 
@@ -93,7 +94,7 @@ class Persons(PersonListMixin, ListView):
     template_name = 'research/persons.html'
 
     def get_queryset(self):
-        return get_person_by_research_id(research_id=self.kwargs['research_id'])
+        return services.get_person_by_research_id(research_id=self.kwargs['research_id'])
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -123,6 +124,7 @@ class PersonDelete(PersonRedirectMixin, DeleteView):
     pass
 
 
+@error_hadling
 def export_research(request):
     researches_id = (request.GET.get('research_id', None))
     if isinstance(researches_id, int):

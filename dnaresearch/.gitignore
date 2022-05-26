@@ -1,8 +1,10 @@
 __pycache__
 .idea
+.vscode
 /venv
 migrations
 export_file.txt
+errors.log
 db.sqlite3
 .env.dev
 .env.prod

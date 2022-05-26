@@ -253,21 +253,31 @@ CRIMINAL_ARTICLES = [
     "358 Экоцид",
     "359 Наемничество",
     "360 Нападение на лиц или учреждения, которые пользуются международной защитой",
-    "Статья отсутствует"
 ]
 
 
 def create_record_list(articles: list):
     records = []
-    for article in enumerate(articles, start=1):
+    for pk, article in enumerate(articles, start=1):
         record = {
             "model": "research.CriminalArticles",
-            "pk": article[0],
+            "pk": pk,
             "fields": {
-                "article": article[1]
+                "number": article[0:3],
+                "description": article[4::]
             }
         }
         records.append(record)
+    records.append(
+        {
+            "model": "research.CriminalArticles",
+            "pk": len(records) + 1,
+            "fields": {
+                "number": "",
+                "description": "Статья отсутствует"
+            }
+        }
+    )
     return records
 
 
