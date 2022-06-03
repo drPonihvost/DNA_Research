@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+   <meta charset="UTF-8">
+   <title>{% block title %}{% endblock %}</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link type="text/css" rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+</head>
+<body>
+   <header>
+      <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-light">
+         <div class="container-xxl">
+            <a class="navbar-brand" href="{% url 'home' %}">
+               <img src="{% static 'img/dna_icon.svg' %}" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+               Исследование ДНК
+            </a>
+            <button class="navbar-toggler mx-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+               aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+               <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+               <ul class="navbar-nav">
+                  <li class="nav-item">
+                     <a class="nav-link active" aria-current="page" href="{% url 'register' %}">Журнал</a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link active" href="{% url 'all_persons' %}">Лица на проверку</a>
+                  </li>
+                  <li class="nav-item">
+                     <div class="command-panel d-flex justify-content-end">
+                        {% block command %}
+                        {% endblock %}
+                     </div>
+                  </li>
+               </ul>
+            </div> 
+         </div>
+      </nav>
+   </header>
+   <div id="content" class="pt-5">
+      {% block content %}
+      {% endblock %}
+   </div>
+   <script src="{% static 'js/bootstrap.min.js'%}"></script>
+   {% block scripts %}
+   {% endblock %}
+</body>
+</html>

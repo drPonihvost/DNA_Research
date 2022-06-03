@@ -1,4 +1,7 @@
 import os
+
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse, HttpResponseNotFound, FileResponse, StreamingHttpResponse
 from django.urls import reverse_lazy
 from django.views.generic import View, ListView, DetailView, CreateView, UpdateView, DeleteView
@@ -11,7 +14,7 @@ from . import models
 
 
 # -------Research Mixin--------
-class ResearchMixin(ErrorHadling):
+class ResearchMixin(LoginRequiredMixin, ErrorHadling):
     model = models.Research
 
 
@@ -58,7 +61,7 @@ class ResearchDeleteForm(ResearchSingleMixin, DeleteView):
 
 # Person
 # Person Mixins
-class PersonMixin(ErrorHadling):
+class PersonMixin(LoginRequiredMixin, ErrorHadling):
     model = models.Person
 
 
@@ -125,6 +128,7 @@ class PersonDelete(PersonRedirectMixin, DeleteView):
 
 
 @error_hadling
+@login_required
 def export_research(request):
     researches_id = (request.GET.get('research_id', None))
     if isinstance(researches_id, int):
