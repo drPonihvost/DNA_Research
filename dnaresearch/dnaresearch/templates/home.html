@@ -1,12 +1,10 @@
 {% extends 'base.html' %}
 
+{% block title %}Главная{% endblock title %}
+
 {% block content %}
-    <h1>Home page</h1>
-    <hr>
-    {% if user.is_authenticated %}
-        <a href="{% url 'logout' %}">Logout</a>
-    {% else %}
-        <a href="{% url 'login' %}">Login</a> |
-        <a href="{% url 'register' %}">Register</a>
-    {% endif %}
+<div class="container-fluid my-5 text-center">
+    <h1>Главная страница находится в разработке</h1>
+</div>
+    
 {% endblock %}

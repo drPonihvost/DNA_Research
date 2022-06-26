@@ -3,6 +3,8 @@ from django.urls import reverse
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 
+from users.models import User
+
 
 class CriminalArticles(models.Model):
     """Унифицированный список статей УК РФ"""
@@ -43,6 +45,7 @@ class Research(models.Model):
     address = models.TextField(blank=True, default=None, null=True, verbose_name='Адрес места происшествия')
     relative_search = models.BooleanField(default=False, verbose_name='Родственный поиск')
     reg_date = models.DateField(blank=True, default=None, null=True, verbose_name='Дата регистрации')
+    user = models.ForeignKey(User,blank=True, null=True, on_delete=models.SET_NULL, verbose_name='Принял эксперт')
 
     class Meta:
         verbose_name = 'Исследования'

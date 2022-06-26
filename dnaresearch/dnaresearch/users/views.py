@@ -5,19 +5,20 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 
-from core.views import error_hadling, ErrorHadling
-from .forms import CustomUserCreationForm, ProfileForm, LoginForm
+from core.views import error_handling, ErrorHandling
+from .forms import CustomUserCreationForm, ProfileForm, UserAuthenticationForm
 
 
 class UserLogin(LoginView):
     template_name = 'users/registration/login.html'
+    form_class = UserAuthenticationForm
 
 
-class UserLogout(ErrorHadling, LogoutView):
+class UserLogout(ErrorHandling, LogoutView):
     pass
 
 
-@error_hadling
+@error_handling
 def signup(request):
     if request.method == 'POST':
         user_form = CustomUserCreationForm(request.POST)
@@ -40,7 +41,7 @@ def signup(request):
 
 
 @login_required
-@error_hadling
+@error_handling
 def update_profile(request):
     if request.method == 'POST':
         user_form = CustomUserCreationForm(request.POST, instance=request.user)

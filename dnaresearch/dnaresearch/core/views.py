@@ -3,8 +3,9 @@ import logging
 import traceback
 
 from django.db import transaction
-from django.http import JsonResponse, HttpResponseNotFound
+from django.http import JsonResponse, HttpResponseNotFound, HttpResponseForbidden
 from django.views import View
+from django.core.exceptions import PermissionDenied
 
 JSON_DUMPS_PARAM = {
     'ensure_ascii': False
@@ -24,8 +25,10 @@ def ret(json_object, status=200):
     )
 
 
-def error_http_response():
+def _error_http_response(error):
     """Возвращает страницу NotFound"""
+    if isinstance(error, PermissionDenied):
+        return HttpResponseForbidden('<h1>Доступ запрещен</h1>')
     return HttpResponseNotFound('<h1>Страница не найдена</h1>')
 
 
@@ -39,7 +42,7 @@ def error_response(exception):
     return ret(res, status=400)
 
 
-def error_hadling(fn):
+def error_handling(fn):
     """Обработка исключений на верхнем уровне"""
 
     @functools.wraps(fn)
@@ -48,21 +51,19 @@ def error_hadling(fn):
             with transaction.atomic():
                 return fn(request, *args, **kwargs)
         except Exception as e:
-            print('Ошибка')
-            return error_response(e)
-
+            return _error_http_response(e)
     return inner
 
 
-class ErrorHadling(View):
+class ErrorHandling(View):
     """Базовый класс View для обработки исключений"""
-
     def dispatch(self, request, *args, **kwargs):
         try:
             response = super().dispatch(request, *args, **kwargs)
         except Exception as e:
-            print('У ошибки есть атрибут message')
             logger.info(str(e))
+            if isinstance(e, PermissionDenied):
+                return HttpResponseForbidden('<h1>Доступ запрещен</h1>')
             return self._response({'errorMessage': str(e), 'traceback': traceback.format_exc()}, status=400)
 
         if isinstance(response, (dict, list)):

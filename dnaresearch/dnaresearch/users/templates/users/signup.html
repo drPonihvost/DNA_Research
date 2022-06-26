@@ -1,23 +1,44 @@
-{% extends 'users/_base.html' %}
+{% extends 'users/base_user.html' %}
 
-{% block title %}Sign Up{% endblock %}
+{% block title %}Регистрация{% endblock %}
 
 {% block content %}
+<div class="container-lg mt-4">
+   <div class="row">
+      <div class="col-3"></div>
+      <div class="col-6">
+         <div class="card mt-3">
+            <div class="card-header text-primary">
+               <h5 class="card-title">
+                  Регистрация
+               </h5>
+            </div>
+            <div class="card-body">
+               <div class="row">
+                  <form action="{% url 'signup' %}"  method="post">
+                        {% csrf_token %}
+                        <div class="mt-1">
+                           {{ user_form.non_field_errors }}
+                        </div>
+                        <div class="mt-1">
+                           {{ user_form.email.label }}
+                           {{ user_form.email }}
+                           {{ user_form.email.errors}}
+                        </div>
+                        {% comment %} {{user_form.as_p}}
+                        {{profile_form.as_p}} {% endcomment %}
+                        <input class="button" type="submit" value="Register">
+                  </form>
+                  <p>Already have an account? <a class = "button" href="{% url 'register' %}">Login </a></p>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="col-3"></div>
+   </div>
+</div>
 
-
-    <div class="header-bar">
-        <h1>Register</h1>
-    </div>
-
-    <div class="card-body">
-        <form method="POST">
-            {% csrf_token %}
-            {{user_form.as_p}}
-            {{profile_form.as_p}}
-            <input class="button" type="submit" value="Register">
-        </form>
-        <p>Already have an account? <a class = "button" href="{% url 'register' %}">Login </a></p>
-    </div>
+    
 
 
 {% endblock %}

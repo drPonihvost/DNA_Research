@@ -1,21 +1,24 @@
 import os
 
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.http import HttpResponse, HttpResponseNotFound, FileResponse, StreamingHttpResponse
 from django.urls import reverse_lazy
 from django.views.generic import View, ListView, DetailView, CreateView, UpdateView, DeleteView
 
 
-from core.views import ErrorHadling, error_hadling
+from core.views import ErrorHandling, error_handling
 from . import forms
 from . import services
 from . import models
 
 
 # -------Research Mixin--------
-class ResearchMixin(LoginRequiredMixin, ErrorHadling):
+class ResearchMixin(LoginRequiredMixin, PermissionRequiredMixin, ErrorHandling):
     model = models.Research
+
+    def get_redirect_field_name(self):
+        return HttpResponseNotFound('<h1>Не найдено</h1>')
 
 
 class ResearchSingleMixin(ResearchMixin):
@@ -31,19 +34,30 @@ class ResearchFormMixin(ResearchSingleMixin):
     success_url = reverse_lazy('register')
 
 
+
 # Research ListObject
 class Researches(ResearchListMixin, ListView):
     template_name = 'research/research.html'
+    permission_required = 'research.view_research'
+
+
 
 
 # Research SingleObject
 class Research(ResearchSingleMixin, DetailView):
-    template_name = 'research/research_detail.html'  
-
+    template_name = 'research/research_detail.html'
+    permission_required = 'research.view_research'
 
 
 class ResearchForm(ResearchFormMixin, CreateView):
     template_name = 'research/research_form.html'
+
+    def form_valid(self, form):
+        print(self.request.user)
+        fields = form.save(commit=False)
+        fields.user = self.request.user
+        fields.save()
+        return super().form_valid(form)
 
 
 class ResearchUpdateForm(ResearchFormMixin, UpdateView):
@@ -61,7 +75,7 @@ class ResearchDeleteForm(ResearchSingleMixin, DeleteView):
 
 # Person
 # Person Mixins
-class PersonMixin(LoginRequiredMixin, ErrorHadling):
+class PersonMixin(LoginRequiredMixin, ErrorHandling):
     model = models.Person
 
 
@@ -127,7 +141,7 @@ class PersonDelete(PersonRedirectMixin, DeleteView):
     pass
 
 
-@error_hadling
+@error_handling
 @login_required
 def export_research(request):
     researches_id = (request.GET.get('research_id', None))
@@ -146,6 +160,7 @@ def export_research(request):
             response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")
             response['Content-Disposition'] = 'inline; filename=' + os.path.basename(path)
             return response
+
 
 def pageNotFound(request, exception):
     return HttpResponseNotFound('<h1>Страница не найдена</h1>')
