@@ -14,11 +14,8 @@ from . import models
 
 
 # -------Research Mixin--------
-class ResearchMixin(LoginRequiredMixin, PermissionRequiredMixin, ErrorHandling):
+class ResearchMixin(ErrorHandling, LoginRequiredMixin, PermissionRequiredMixin):
     model = models.Research
-
-    def get_redirect_field_name(self):
-        return HttpResponseNotFound('<h1>Не найдено</h1>')
 
 
 class ResearchSingleMixin(ResearchMixin):
@@ -53,7 +50,6 @@ class ResearchForm(ResearchFormMixin, CreateView):
     template_name = 'research/research_form.html'
 
     def form_valid(self, form):
-        print(self.request.user)
         fields = form.save(commit=False)
         fields.user = self.request.user
         fields.save()

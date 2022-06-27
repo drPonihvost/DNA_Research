@@ -2,10 +2,12 @@ import functools
 import logging
 import traceback
 
+
 from django.db import transaction
 from django.http import JsonResponse, HttpResponseNotFound, HttpResponseForbidden
 from django.views import View
 from django.core.exceptions import PermissionDenied
+
 
 JSON_DUMPS_PARAM = {
     'ensure_ascii': False
@@ -55,18 +57,17 @@ def error_handling(fn):
     return inner
 
 
-class ErrorHandling(View):
+class ErrorHandling:
     """Базовый класс View для обработки исключений"""
     def dispatch(self, request, *args, **kwargs):
         try:
             response = super().dispatch(request, *args, **kwargs)
         except Exception as e:
             logger.info(str(e))
-            if isinstance(e, PermissionDenied):
-                return HttpResponseForbidden('<h1>Доступ запрещен</h1>')
             return self._response({'errorMessage': str(e), 'traceback': traceback.format_exc()}, status=400)
 
         if isinstance(response, (dict, list)):
+            print(response)
             return self._response(response)
         else:
             return response

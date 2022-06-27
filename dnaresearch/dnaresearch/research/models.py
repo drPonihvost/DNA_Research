@@ -17,7 +17,7 @@ class CriminalArticles(models.Model):
         ordering = ['number']
 
     def __str__(self):
-        return self.number
+        return str(self.number)
 
     
 
@@ -84,7 +84,7 @@ class Research(models.Model):
 
 
     def __str__(self):
-        return self.reg_number
+        return str(self.reg_number)
 
     def get_absolute_url(self):
         return reverse('research_detail', kwargs={'research_id': self.pk})

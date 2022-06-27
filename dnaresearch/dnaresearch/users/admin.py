@@ -1,7 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin, UserCreationForm, UserChangeForm
 
-from .forms import CustomUserCreationForm, CustomUserChangeForm
 from .models import User, Profile, Department
 
 
@@ -19,7 +18,6 @@ class CustomUserAdmin(UserAdmin):
                     "is_staff",
                     "is_superuser",
                     "groups",
-                    "user_permissions",
                 )
             }
         ),
@@ -30,7 +28,7 @@ class CustomUserAdmin(UserAdmin):
             None,
             {
                 'classes': ('wide',),
-                'fields': ('email', 'password1', 'password2', 'is_staff', 'is_active', "groups", "user_permissions")
+                'fields': ('email', 'password1', 'password2', 'is_staff', 'is_active', 'groups')
             },
         ),
     )
