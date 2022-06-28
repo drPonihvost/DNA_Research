@@ -52,17 +52,19 @@ class Profile(models.Model):
     patronymic = models.CharField(max_length=30, verbose_name='Отчество', null=True)
     post = models.CharField(max_length=50, verbose_name='Должность', null=True)
     rank = models.CharField(max_length=50, verbose_name='Сп. звание', null=True)
-    phone = PhoneNumberField(verbose_name='Мобильный телефон', null=True)
+    phone = PhoneNumberField(verbose_name='Мобильный телефон', null=True, blank=True)
+    can_sign = models.BooleanField(verbose_name='Право на подпись', default=False)
 
     #  Все поля относительно места работы/службы
     department = models.ForeignKey(Department, on_delete=models.SET_NULL, verbose_name='Департамент', null=True)
     division = models.CharField(max_length=100, verbose_name='Подразделение', null=True, blank=True)
     address = models.TextField(max_length=500, verbose_name='Адрес', null=True)
     office_phone = PhoneNumberField(verbose_name='Рабочий телефон', null=True)
+    post_index = models.CharField(max_length=6, null=True)
 
     class Meta:
         verbose_name = 'Профиль'
         verbose_name_plural = 'Профили'
 
     def __str__(self):
-        return f"{self.surname} {str(self.name)[0].upper()}. {str(self.patronymic)[0].upper()}"
+        return f"{self.surname} {str(self.name)[0].upper()}. {str(self.patronymic)[0].upper()}."
