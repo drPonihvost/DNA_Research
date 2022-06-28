@@ -2,9 +2,12 @@ import functools
 import logging
 import traceback
 
+
 from django.db import transaction
-from django.http import JsonResponse, HttpResponseNotFound
+from django.http import Http404, JsonResponse, HttpResponseNotFound, HttpResponseForbidden, HttpResponseServerError
 from django.views import View
+from django.core.exceptions import PermissionDenied, ImproperlyConfigured
+
 
 JSON_DUMPS_PARAM = {
     'ensure_ascii': False
@@ -24,8 +27,10 @@ def ret(json_object, status=200):
     )
 
 
-def error_http_response():
+def _error_http_response(error):
     """Возвращает страницу NotFound"""
+    if isinstance(error, PermissionDenied):
+        return HttpResponseForbidden('<h1>Доступ запрещен</h1>')
     return HttpResponseNotFound('<h1>Страница не найдена</h1>')
 
 
@@ -39,7 +44,7 @@ def error_response(exception):
     return ret(res, status=400)
 
 
-def error_hadling(fn):
+def error_handling(fn):
     """Обработка исключений на верхнем уровне"""
 
     @functools.wraps(fn)
@@ -48,23 +53,18 @@ def error_hadling(fn):
             with transaction.atomic():
                 return fn(request, *args, **kwargs)
         except Exception as e:
-            print('Ошибка')
-            return error_response(e)
-
+            return _error_http_response(e)
     return inner
 
 
-class ErrorHadling(View):
+class ErrorHandlingMixin:
     """Базовый класс View для обработки исключений"""
-
     def dispatch(self, request, *args, **kwargs):
         try:
             response = super().dispatch(request, *args, **kwargs)
         except Exception as e:
-            print('У ошибки есть атрибут message')
             logger.info(str(e))
-            return self._response({'errorMessage': str(e), 'traceback': traceback.format_exc()}, status=400)
-
+            return self.http_response(e)
         if isinstance(response, (dict, list)):
             return self._response(response)
         else:
@@ -78,3 +78,10 @@ class ErrorHadling(View):
             safe=not isinstance(data, list),
             json_dumps_params=JSON_DUMPS_PARAM
         )
+
+    
+    def http_response(self, error):
+        if isinstance(error, (PermissionDenied, ImproperlyConfigured)):
+            raise PermissionDenied
+        else:
+            return self._response({'errorMessage': str(error), 'traceback': traceback.format_exc()}, status=400)
