@@ -2,19 +2,19 @@ import os
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from django.http import HttpResponse, HttpResponseNotFound, FileResponse, StreamingHttpResponse
+from django.http import HttpResponse, HttpResponseNotFound
 from django.urls import reverse_lazy
-from django.views.generic import View, ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 
-from core.views import ErrorHandling, error_handling
+from core.views import ErrorHandlingMixin, error_handling
 from . import forms
 from . import services
 from . import models
 
 
 # -------Research Mixin--------
-class ResearchMixin(ErrorHandling, LoginRequiredMixin, PermissionRequiredMixin):
+class ResearchMixin(ErrorHandlingMixin, LoginRequiredMixin, PermissionRequiredMixin):
     model = models.Research
 
 
@@ -48,6 +48,7 @@ class Research(ResearchSingleMixin, DetailView):
 
 class ResearchForm(ResearchFormMixin, CreateView):
     template_name = 'research/research_form.html'
+    permission_required = 'research.add_research'
 
     def form_valid(self, form):
         fields = form.save(commit=False)
@@ -58,21 +59,25 @@ class ResearchForm(ResearchFormMixin, CreateView):
 
 class ResearchUpdateForm(ResearchFormMixin, UpdateView):
     template_name = 'research/research_form.html'
+    permission_required = 'research.change_research'
 
 
 class ResearchRegister(ResearchFormMixin, UpdateView):
     template_name = 'research/research_register.html'
     form_class = forms.RegisterForm
+    permission_required = 'research.change_research'
 
 
 class ResearchDeleteForm(ResearchSingleMixin, DeleteView):
     success_url = reverse_lazy('register')
+    permission_required = 'research.delete_research'
 
 
 # Person
 # Person Mixins
-class PersonMixin(LoginRequiredMixin, ErrorHandling):
+class PersonMixin(ErrorHandlingMixin, LoginRequiredMixin, PermissionRequiredMixin):
     model = models.Person
+    permission_required = ('research.view_research', 'research.add_research', 'research.change_research', 'research.delete_research')
 
 
 class PersonSingleMixin(PersonMixin):
@@ -101,10 +106,12 @@ class PersonFormMixin(PersonRedirectMixin):
 # Person ListObject
 class AllPersons(PersonListMixin, ListView):
     template_name = 'research/all_persons.html'
+    permission_required = 'research.view_research'
 
 
 class Persons(PersonListMixin, ListView):
     template_name = 'research/persons.html'
+    permission_required = 'research.view_research'
 
     def get_queryset(self):
         return services.get_person_by_research_id(research_id=self.kwargs['research_id'])
@@ -118,9 +125,11 @@ class Persons(PersonListMixin, ListView):
 # Person SingleObject
 class Person(PersonSingleMixin, DetailView):
     template_name = 'research/person_detail.html'
+    permission_required = 'research.view_research'
 
 
 class PersonForm(PersonFormMixin, CreateView):
+    permission_required = 'research.add_research'
 
     def form_valid(self, form):
         fields = form.save(commit=False)
@@ -130,11 +139,11 @@ class PersonForm(PersonFormMixin, CreateView):
 
 
 class PersonUpdate(PersonFormMixin, UpdateView):
-    pass
+    permission_required = 'research.change_research'
 
 
 class PersonDelete(PersonRedirectMixin, DeleteView):
-    pass
+    permission_required = 'research.delete_research'
 
 
 @error_handling

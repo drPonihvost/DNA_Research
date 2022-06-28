@@ -4,9 +4,9 @@ import traceback
 
 
 from django.db import transaction
-from django.http import JsonResponse, HttpResponseNotFound, HttpResponseForbidden
+from django.http import Http404, JsonResponse, HttpResponseNotFound, HttpResponseForbidden, HttpResponseServerError
 from django.views import View
-from django.core.exceptions import PermissionDenied
+from django.core.exceptions import PermissionDenied, ImproperlyConfigured
 
 
 JSON_DUMPS_PARAM = {
@@ -57,17 +57,15 @@ def error_handling(fn):
     return inner
 
 
-class ErrorHandling:
+class ErrorHandlingMixin:
     """Базовый класс View для обработки исключений"""
     def dispatch(self, request, *args, **kwargs):
         try:
             response = super().dispatch(request, *args, **kwargs)
         except Exception as e:
             logger.info(str(e))
-            return self._response({'errorMessage': str(e), 'traceback': traceback.format_exc()}, status=400)
-
+            return self.http_response(e)
         if isinstance(response, (dict, list)):
-            print(response)
             return self._response(response)
         else:
             return response
@@ -80,3 +78,10 @@ class ErrorHandling:
             safe=not isinstance(data, list),
             json_dumps_params=JSON_DUMPS_PARAM
         )
+
+    
+    def http_response(self, error):
+        if isinstance(error, (PermissionDenied, ImproperlyConfigured)):
+            raise PermissionDenied
+        else:
+            return self._response({'errorMessage': str(error), 'traceback': traceback.format_exc()}, status=400)
