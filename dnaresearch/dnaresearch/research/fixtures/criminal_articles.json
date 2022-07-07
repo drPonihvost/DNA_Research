@@ -1,0 +1,2018 @@
+[
+  {
+    "model": "research.CriminalArticles",
+    "pk": 1,
+    "fields": {
+      "number": "105",
+      "description": "Убийство"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 2,
+    "fields": {
+      "number": "106",
+      "description": "Убийство матерью новорожденного ребенка"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 3,
+    "fields": {
+      "number": "107",
+      "description": "Убийство, совершенное в состоянии аффекта"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 4,
+    "fields": {
+      "number": "108",
+      "description": "Убийство, совершенное при превышении пределов необх. обороны либо мер, необх. для задержания лица"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 5,
+    "fields": {
+      "number": "109",
+      "description": "Причинение смерти по неосторожности"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 6,
+    "fields": {
+      "number": "110",
+      "description": "Доведение до самоубийства"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 7,
+    "fields": {
+      "number": "111",
+      "description": "Умышленное причинение тяжкого вреда здоровью"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 8,
+    "fields": {
+      "number": "112",
+      "description": "Умышленное причинение средней тяжести вреда здоровью"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 9,
+    "fields": {
+      "number": "113",
+      "description": "Причинение тяжкого или средней тяжести вреда здоровью в состоянии аффекта"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 10,
+    "fields": {
+      "number": "114",
+      "description": "Причинение тяжкого или ср. тяжести вреда здоровью при превыш. пределов необх. обороны либо мер, необх. для задержания лица"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 11,
+    "fields": {
+      "number": "115",
+      "description": "Умышленное причинение легкого вреда здоровью"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 12,
+    "fields": {
+      "number": "116",
+      "description": "Побои"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 13,
+    "fields": {
+      "number": "117",
+      "description": "Истязание"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 14,
+    "fields": {
+      "number": "118",
+      "description": "Причинение тяжкого вреда здоровью по неосторожности"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 15,
+    "fields": {
+      "number": "119",
+      "description": "Угроза убийством или причинением вреда"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 16,
+    "fields": {
+      "number": "120",
+      "description": "Принуждение к изъятию органов или тканей человека для трансплантации"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 17,
+    "fields": {
+      "number": "121",
+      "description": "Заражение венерической болезнью"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 18,
+    "fields": {
+      "number": "122",
+      "description": "Заражение ВИЧ-инфекцией"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 19,
+    "fields": {
+      "number": "123",
+      "description": "Незаконное производство аборта"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 20,
+    "fields": {
+      "number": "124",
+      "description": "Неоказание помощи больному"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 21,
+    "fields": {
+      "number": "125",
+      "description": "Оставление в опасности"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 22,
+    "fields": {
+      "number": "126",
+      "description": "Похищение человеа"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 23,
+    "fields": {
+      "number": "127",
+      "description": "Незаконное лишение свободы"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 24,
+    "fields": {
+      "number": "128",
+      "description": "Незаконное помещение в психоатрический стационар"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 25,
+    "fields": {
+      "number": "129",
+      "description": "Клевета"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 26,
+    "fields": {
+      "number": "130",
+      "description": "Оскорбление"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 27,
+    "fields": {
+      "number": "131",
+      "description": "Изнасилование"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 28,
+    "fields": {
+      "number": "132",
+      "description": "Насильственные действия сексуального характера"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 29,
+    "fields": {
+      "number": "133",
+      "description": "Понуждение к действиям сексуального характера"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 30,
+    "fields": {
+      "number": "134",
+      "description": "Половое сношение и иные действия сексуального характера"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 31,
+    "fields": {
+      "number": "135",
+      "description": "Развратные действия"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 32,
+    "fields": {
+      "number": "136",
+      "description": "Нарушение равенства прав и свобод человека и гражданина"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 33,
+    "fields": {
+      "number": "137",
+      "description": "Нарушение неприкосновенности чатной жизни"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 34,
+    "fields": {
+      "number": "138",
+      "description": "Нарушение тайны переписки, тел. переговоров, почтовых, телеграфных или иных сообщений"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 35,
+    "fields": {
+      "number": "139",
+      "description": "Нарушение неприкосновенности жилища"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 36,
+    "fields": {
+      "number": "140",
+      "description": "Отказ в предоставлении гражданину информации"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 37,
+    "fields": {
+      "number": "141",
+      "description": "Воспрепятствование осуществлению избирательных прав или работе избирательных комиссий"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 38,
+    "fields": {
+      "number": "142",
+      "description": "Фальсификация избирательных документов, документов референдума"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 39,
+    "fields": {
+      "number": "143",
+      "description": "Нарушение правил охраны труда"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 40,
+    "fields": {
+      "number": "144",
+      "description": "Воспрепятствование законной проф. деятельности журналистов"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 41,
+    "fields": {
+      "number": "145",
+      "description": "Необоснованный отказ в приеме на работу или необосн. увольнение беременной или имеющей детей до трех лет"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 42,
+    "fields": {
+      "number": "146",
+      "description": "Нарушение авторских и смежных прав"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 43,
+    "fields": {
+      "number": "147",
+      "description": "Нарушение изобретательских и патентных прав"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 44,
+    "fields": {
+      "number": "148",
+      "description": "Воспрепятствование осуществлению права на свободу совести и вероисповеданий"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 45,
+    "fields": {
+      "number": "149",
+      "description": "Воспрепятствование проведению собрания, митинга, демонстрации, шествия, пикетирования или участию в них"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 46,
+    "fields": {
+      "number": "150",
+      "description": "Вовлечение несовершеннолетнего в совершение преступления"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 47,
+    "fields": {
+      "number": "151",
+      "description": "Вовлечение несовершеннолетнего в совершение антиобщественных действий"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 48,
+    "fields": {
+      "number": "153",
+      "description": "Подмена ребенка"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 49,
+    "fields": {
+      "number": "154",
+      "description": "Незаконное усыновление (удочерение)"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 50,
+    "fields": {
+      "number": "155",
+      "description": "Разглашение тайны усыновления (удочерения)"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 51,
+    "fields": {
+      "number": "156",
+      "description": "Неисполнение обязаностей по воспитанию несовершеннолетнего"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 52,
+    "fields": {
+      "number": "157",
+      "description": "Злостное  уклонение от уплаты средств на содержание детей или нетрудоспособных родителей"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 53,
+    "fields": {
+      "number": "158",
+      "description": "Кража"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 54,
+    "fields": {
+      "number": "159",
+      "description": "Мошенничество"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 55,
+    "fields": {
+      "number": "160",
+      "description": "Присвоение и растрата"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 56,
+    "fields": {
+      "number": "161",
+      "description": "Грабеж"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 57,
+    "fields": {
+      "number": "162",
+      "description": "Разбой"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 58,
+    "fields": {
+      "number": "163",
+      "description": "Вымогательство"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 59,
+    "fields": {
+      "number": "164",
+      "description": "Хищение предметов, имеющих особую ценность"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 60,
+    "fields": {
+      "number": "165",
+      "description": "Причинение имущественного ущерба путем обмана или злоупотребления доверием"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 61,
+    "fields": {
+      "number": "166",
+      "description": "Неправомерное завладение автомобилем или иным транспортным средством без цели хищения"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 62,
+    "fields": {
+      "number": "167",
+      "description": "Умышленные уничтожение или повреждение имущества"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 63,
+    "fields": {
+      "number": "168",
+      "description": "Уничтожение или повреждение имущества по неосторожности"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 64,
+    "fields": {
+      "number": "169",
+      "description": "Воспрепятствование законной предпринимательской или иной деятельности"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 65,
+    "fields": {
+      "number": "170",
+      "description": "Регистрация законных сделок с землей"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 66,
+    "fields": {
+      "number": "171",
+      "description": "Незаконное предпринимательство"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 67,
+    "fields": {
+      "number": "172",
+      "description": "Незаконная банковская деятельность"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 68,
+    "fields": {
+      "number": "173",
+      "description": "Лжепредпринимательство"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 69,
+    "fields": {
+      "number": "174",
+      "description": "Легализация (отмывание)  ден. средств или иного имущества, приобретенных другими лицами преступным путем"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 70,
+    "fields": {
+      "number": "175",
+      "description": "Приобретение или сбыт имущества, заведомо добытого преступным путем"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 71,
+    "fields": {
+      "number": "176",
+      "description": "Незаконное получение кредита"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 72,
+    "fields": {
+      "number": "177",
+      "description": "Злостное уклонение от погашения кредиторской задолженности"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 73,
+    "fields": {
+      "number": "178",
+      "description": "Недопущение, ограничение или устранение конкуренции"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 74,
+    "fields": {
+      "number": "179",
+      "description": "Принуждение к совершению сделки или к отказу от ее совершения"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 75,
+    "fields": {
+      "number": "180",
+      "description": "Незаконное использование товарного знака"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 76,
+    "fields": {
+      "number": "181",
+      "description": "Нарушение правил изготовления и использования государственных пробирных клейм"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 77,
+    "fields": {
+      "number": "183",
+      "description": "Незаконные получение и разглашение сведений, состовляющих коммерческую, налоговую или банковскую тайну"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 78,
+    "fields": {
+      "number": "184",
+      "description": "Подкуп участников и организаторов профессиональных спортивных соревнованией и зрел. коммерческих конкурсов"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 79,
+    "fields": {
+      "number": "185",
+      "description": "Злоупотребление при эмиссии ценных бумаг"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 80,
+    "fields": {
+      "number": "186",
+      "description": "Изготовление или сбыт поддельных денег или ценных бумаг"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 81,
+    "fields": {
+      "number": "187",
+      "description": "Изготовление или сбыт поддельных кредитных либо расчентых карт и иных платеж. документов"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 82,
+    "fields": {
+      "number": "188",
+      "description": "Контрабанда"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 83,
+    "fields": {
+      "number": "189",
+      "description": "Незаконные экспорт или передача сырья, мат-лов, оборудования, НТИ, выполнение работ, кот. м. б. исп. при создании ОМП"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 84,
+    "fields": {
+      "number": "190",
+      "description": "Невозвращение на территорию РФ предметов художественного, истор. и археолог. достояния народов РФ и заруб. стран"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 85,
+    "fields": {
+      "number": "191",
+      "description": "Незаконный оборот драг. металлов, природных камней или жемчуга"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 86,
+    "fields": {
+      "number": "192",
+      "description": "Нарушение правил сдачи государству драг. металлов и драг. комней"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 87,
+    "fields": {
+      "number": "193",
+      "description": "Невозвращение из-за границы средств в иностранной валюте"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 88,
+    "fields": {
+      "number": "194",
+      "description": "Уклонение от уплаты таможенных платежей, взым. с организации или физ. лица"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 89,
+    "fields": {
+      "number": "195",
+      "description": "Неправомерные действия при банкротстве"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 90,
+    "fields": {
+      "number": "196",
+      "description": "Преднамеренное банкротство"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 91,
+    "fields": {
+      "number": "197",
+      "description": "Фиктивное банкротство"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 92,
+    "fields": {
+      "number": "198",
+      "description": "Уклонение от уплаты налогов и (или) сборов с физического лица"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 93,
+    "fields": {
+      "number": "199",
+      "description": "Уклонение от уплаты налогов и (или) сборов с организации"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 94,
+    "fields": {
+      "number": "201",
+      "description": "Злоупотребление полномочиями"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 95,
+    "fields": {
+      "number": "202",
+      "description": "Злоупотребление правомочиями частными нотариусами и аудиторами"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 96,
+    "fields": {
+      "number": "203",
+      "description": "Превышение полномочий служащими частных охранных или детективных служб"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 97,
+    "fields": {
+      "number": "204",
+      "description": "Коммерческий подкуп"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 98,
+    "fields": {
+      "number": "205",
+      "description": "Террористический акт"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 99,
+    "fields": {
+      "number": "206",
+      "description": "Захват заложника"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 100,
+    "fields": {
+      "number": "207",
+      "description": "Заведомо ложное сообщение об акте терроризма"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 101,
+    "fields": {
+      "number": "208",
+      "description": "Организация незаконного вооруженного формирования или участие в нем"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 102,
+    "fields": {
+      "number": "209",
+      "description": "Бандитизм"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 103,
+    "fields": {
+      "number": "210",
+      "description": "Организация преступного сообщества (преступной организации)"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 104,
+    "fields": {
+      "number": "211",
+      "description": "Угон судна воздушного или водного транспорта либо ж/д подвижного состава"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 105,
+    "fields": {
+      "number": "212",
+      "description": "Массовые беспорядки"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 106,
+    "fields": {
+      "number": "213",
+      "description": "Хулиганство"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 107,
+    "fields": {
+      "number": "214",
+      "description": "Вандализм"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 108,
+    "fields": {
+      "number": "215",
+      "description": "Нарушение правил безопасности на объектах атомной энергетики"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 109,
+    "fields": {
+      "number": "216",
+      "description": "Нарушение правил безопасности при проведении горных, строительных или иных работ"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 110,
+    "fields": {
+      "number": "217",
+      "description": "Нарушение правил безопасности на взрывоопасных объектах"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 111,
+    "fields": {
+      "number": "218",
+      "description": "Нарушение правил учета, хранения, перевозкии исп. взрывчатых, легковосплам. веществ и пиротехники"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 112,
+    "fields": {
+      "number": "219",
+      "description": "Нарушение правил пожарной безопасности"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 113,
+    "fields": {
+      "number": "220",
+      "description": "Незаконное обращение с ядерными материалами или радиоактивными веществами"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 114,
+    "fields": {
+      "number": "221",
+      "description": "Хищение либо вымогательство ядерных материалов или радиоактивных веществ"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 115,
+    "fields": {
+      "number": "222",
+      "description": "Незаконные приобретение, передача, сбыт, хран., перевозка или ношение оружия, боеприпасов, взрыв. вещ-в"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 116,
+    "fields": {
+      "number": "223",
+      "description": "Незаконное изготовление оружия"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 117,
+    "fields": {
+      "number": "224",
+      "description": "Небрежное хранение огнестрельного оружия"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 118,
+    "fields": {
+      "number": "225",
+      "description": "Ненадлежащее исполнение обязанностей по охране оружия, боеприпасов, взрыв. вещ-в и устройств"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 119,
+    "fields": {
+      "number": "226",
+      "description": "Хищение либо вымогательство оружия, боеприпасов, взрыв. вещ-в и устройств"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 120,
+    "fields": {
+      "number": "227",
+      "description": "Пиратство"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 121,
+    "fields": {
+      "number": "228",
+      "description": "Незаконные приобретение, хранение, перевозка, изгот., переработка наркотических средств, психотроп. вещ-в и их аналогов"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 122,
+    "fields": {
+      "number": "229",
+      "description": "Хищение либо вымогательствонаркотических средств или психотропных веществ"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 123,
+    "fields": {
+      "number": "230",
+      "description": "Склонение к потреблению наркотических средств или психотропных веществ"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 124,
+    "fields": {
+      "number": "231",
+      "description": "Незаконное культивирование зпарещ. к возделованию растений, сод. наркотические вещества"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 125,
+    "fields": {
+      "number": "232",
+      "description": "Организация либо содержание притоновдля потребления наркот. ср-в или психотр. вещ-в"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 126,
+    "fields": {
+      "number": "233",
+      "description": "Незакон. выдача либо подделка рецептов или иных док-тов, дающ. право на получ. наркот. ср-в или психотроп. вещ-в"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 127,
+    "fields": {
+      "number": "234",
+      "description": "Незаконный оборот сильнодействующих или ядовитых веществ в целях сбыта"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 128,
+    "fields": {
+      "number": "235",
+      "description": "Незаконное занятие частной мед. практикой или частной фармацевтической деятельностью"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 129,
+    "fields": {
+      "number": "236",
+      "description": "Нарушение  санитарно-эпидемиологических правил"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 130,
+    "fields": {
+      "number": "237",
+      "description": "Сокрытие инф-ции об обстоятельствах, создающих опасность для жизни и здоровья людей"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 131,
+    "fields": {
+      "number": "238",
+      "description": "Пр-во, хранение, перевозка либо сбыт товаров и продукции, вып. работ или оказ. услуг, не отвеч. требованиям безопасности"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 132,
+    "fields": {
+      "number": "239",
+      "description": "Организация объединения, посягающего на личность и права граждан"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 133,
+    "fields": {
+      "number": "240",
+      "description": "Вовлечение в занитие проституцией"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 134,
+    "fields": {
+      "number": "241",
+      "description": "Организация занития проституцией"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 135,
+    "fields": {
+      "number": "242",
+      "description": "Незаконное распространение порнографических материалов и предметов"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 136,
+    "fields": {
+      "number": "243",
+      "description": "Уничтожение или повреждение памятников истории и культуры"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 137,
+    "fields": {
+      "number": "244",
+      "description": "Надругательство над телами умерших и местами их захоронения"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 138,
+    "fields": {
+      "number": "245",
+      "description": "Жестокое обращение с животными"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 139,
+    "fields": {
+      "number": "246",
+      "description": "Нарушение правил охраны окружающей средыпри пр-ве работ"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 140,
+    "fields": {
+      "number": "247",
+      "description": "Нарушение правил обращения экологически опасных веществ и отходов"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 141,
+    "fields": {
+      "number": "248",
+      "description": "Нарушение правил без-ти при обращ. с микробиологическими либо др. биол. агентами или токсинами"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 142,
+    "fields": {
+      "number": "249",
+      "description": "Нарушение вет. правил и правил, уст. для борьбы с болезнями и вредителями растений"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 143,
+    "fields": {
+      "number": "250",
+      "description": "Загрязнение вод"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 144,
+    "fields": {
+      "number": "251",
+      "description": "Загрязнение атмосферы"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 145,
+    "fields": {
+      "number": "252",
+      "description": "Загрязнение морской среды"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 146,
+    "fields": {
+      "number": "253",
+      "description": "Нарушение зак-ва РФ о континентальном шельфе и об искл. эконом. зоне РФ"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 147,
+    "fields": {
+      "number": "254",
+      "description": "Порча земли"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 148,
+    "fields": {
+      "number": "255",
+      "description": "Нарушение правил охраны и испол. недр"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 149,
+    "fields": {
+      "number": "256",
+      "description": "Незаконная добыча водных животных и растений"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 150,
+    "fields": {
+      "number": "257",
+      "description": "Нарушение правил охраны рыбных запасов"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 151,
+    "fields": {
+      "number": "258",
+      "description": "Незаконная охота"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 152,
+    "fields": {
+      "number": "259",
+      "description": "Уничтожение критич. местообитаний для организмов, занес. в Красную книгу РФ"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 153,
+    "fields": {
+      "number": "260",
+      "description": "Незаконная порубка деревьев и кустарников"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 154,
+    "fields": {
+      "number": "261",
+      "description": "Уничтожение или повреждение лесов"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 155,
+    "fields": {
+      "number": "262",
+      "description": "Нарушение режима особоохраняемых природ. тер-рий и объектов"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 156,
+    "fields": {
+      "number": "263",
+      "description": "Наруш. правил безопасности движения и эксплуатиции ж/д, воздушного или водного"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 157,
+    "fields": {
+      "number": "264",
+      "description": "Нарушение ПДД и эксплуатации трансп. средств"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 158,
+    "fields": {
+      "number": "266",
+      "description": "Недоброкач. ремонт трансп. средств и выпуск их в экспл-цию с тех. неисправностями"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 159,
+    "fields": {
+      "number": "267",
+      "description": "Приведение в негодность трансп. средств или путей сообщения"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 160,
+    "fields": {
+      "number": "268",
+      "description": "Нарушение правил, обеспеч. безопасную работу транспорта"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 161,
+    "fields": {
+      "number": "269",
+      "description": "Нарушение правил без-ти при строительстве, эксплуатации или ремонте магистр. трубопроводов"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 162,
+    "fields": {
+      "number": "270",
+      "description": "Неоказание капитаном судна помощи терпящим бедствие"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 163,
+    "fields": {
+      "number": "271",
+      "description": "Нарушение правил международных полетов"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 164,
+    "fields": {
+      "number": "272",
+      "description": "Неправомерный доступ к компьютерной информации"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 165,
+    "fields": {
+      "number": "273",
+      "description": "Создание, использование и распр. вредоносных программ для ЭВМ"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 166,
+    "fields": {
+      "number": "274",
+      "description": "Нарушение правил эксплуатации ЭВМ, системы ЭВМ или их сети"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 167,
+    "fields": {
+      "number": "275",
+      "description": "Государственная измена"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 168,
+    "fields": {
+      "number": "276",
+      "description": "Шпионаж"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 169,
+    "fields": {
+      "number": "277",
+      "description": "Посягательство на жизнь гос. или общ. деятеля"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 170,
+    "fields": {
+      "number": "278",
+      "description": "Насильственный захват власти или насил. удержание власти"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 171,
+    "fields": {
+      "number": "279",
+      "description": "Вооруженный мятеж"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 172,
+    "fields": {
+      "number": "280",
+      "description": "Публичные призывы к осуществлению экстремистской деятельности"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 173,
+    "fields": {
+      "number": "281",
+      "description": "Диверсия"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 174,
+    "fields": {
+      "number": "282",
+      "description": "Возбуждение ненависти либо вражды, а равно унижение чел. достоинства"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 175,
+    "fields": {
+      "number": "283",
+      "description": "Разглашение гос. тайны"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 176,
+    "fields": {
+      "number": "284",
+      "description": "Утрата документов, содерж. гос. тайну"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 177,
+    "fields": {
+      "number": "285",
+      "description": "Злоупотребление должностными полномочиями"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 178,
+    "fields": {
+      "number": "286",
+      "description": "Превышение должностных полномочий"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 179,
+    "fields": {
+      "number": "287",
+      "description": "Отказ в предост. инф-ции Фед. Собранию РФ или Счетной палате РФ"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 180,
+    "fields": {
+      "number": "288",
+      "description": "Присвоение полномочий должностного лица"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 181,
+    "fields": {
+      "number": "289",
+      "description": "Незаконное участие в предпринимательской  деят-ти"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 182,
+    "fields": {
+      "number": "290",
+      "description": "Получение взятки"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 183,
+    "fields": {
+      "number": "291",
+      "description": "Дача взятки"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 184,
+    "fields": {
+      "number": "292",
+      "description": "Служебный подлог"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 185,
+    "fields": {
+      "number": "293",
+      "description": "Халатность"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 186,
+    "fields": {
+      "number": "294",
+      "description": "Воспрепят-ние осущ-нию правосудия и пр-ву предварит. расследования"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 187,
+    "fields": {
+      "number": "295",
+      "description": "Посягательство на жизнь лица, осущ-го правосудие или предварит. расследование"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 188,
+    "fields": {
+      "number": "296",
+      "description": "Угроза или насильств. действия в связи с осущ-нием правосудия и пр-вом предварит. расследования"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 189,
+    "fields": {
+      "number": "297",
+      "description": "Неуважение к суду"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 190,
+    "fields": {
+      "number": "298",
+      "description": "Клевета в отн. судьи, присяж. заседателя,прокурора, следователя, лица, произв. дознание,суд. пристава, суд. исп-ля"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 191,
+    "fields": {
+      "number": "299",
+      "description": "Привлечение заведомо невиновного к угол. отв-ти"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 192,
+    "fields": {
+      "number": "300",
+      "description": "Незаконное освобождение от угол. отв-ти"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 193,
+    "fields": {
+      "number": "301",
+      "description": "Незаконные задержание, заключ. под стражу или содержание под стражей"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 194,
+    "fields": {
+      "number": "302",
+      "description": "Принуждение к даче показаний"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 195,
+    "fields": {
+      "number": "303",
+      "description": "Фальсификация доказательств"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 196,
+    "fields": {
+      "number": "304",
+      "description": "Провокация взятки либо коммерческого подкупа"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 197,
+    "fields": {
+      "number": "305",
+      "description": "Вынесение заведомо неправосудных приговора, решения либо иного суд. акта"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 198,
+    "fields": {
+      "number": "306",
+      "description": "Заведомо ложный донос"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 199,
+    "fields": {
+      "number": "307",
+      "description": "Заведомо ложные показания, заключ-ние эксперта, специалиста или неправ. перевод"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 200,
+    "fields": {
+      "number": "308",
+      "description": "Отказ свидетеля или потерпевшего от дачи показаний"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 201,
+    "fields": {
+      "number": "309",
+      "description": "Подкуп или принуждение к даче показаний или уклон. от дачи показаний либо к неправ. переводу"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 202,
+    "fields": {
+      "number": "310",
+      "description": "Разглашение данных предварительного расследования"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 203,
+    "fields": {
+      "number": "311",
+      "description": "Разглашение сведений о мерах безоп-ти, прим. в отн-ии судьи и уч-ков угол. процесса"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 204,
+    "fields": {
+      "number": "312",
+      "description": "Незаконные действия в отн-ии им-ва, подвергнутого описи или аресту либо подлеж. конфискации"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 205,
+    "fields": {
+      "number": "313",
+      "description": "Побег из места лишения свободы, из-под ареста или из-под стражи"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 206,
+    "fields": {
+      "number": "314",
+      "description": "Уклонение от отбывания лишения свободы"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 207,
+    "fields": {
+      "number": "315",
+      "description": "Неисполнение приговора суда, решения суда или иного суд. акта"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 208,
+    "fields": {
+      "number": "316",
+      "description": "Укрывательство преступлений"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 209,
+    "fields": {
+      "number": "317",
+      "description": "Посягательство на жизнь сотрудника правоохран. органа"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 210,
+    "fields": {
+      "number": "318",
+      "description": "Применение насилия в отн-ии представителя власти"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 211,
+    "fields": {
+      "number": "319",
+      "description": "Оскорбление предст-ля власти"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 212,
+    "fields": {
+      "number": "320",
+      "description": "Разглашение сведений о мерах безоп-ти, прим. в отн. должностного лица правоохр. или контр-щего органа"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 213,
+    "fields": {
+      "number": "321",
+      "description": "Дезорганизация деят-ти учреждений, обеспеч. изоляцию от общ-ва"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 214,
+    "fields": {
+      "number": "322",
+      "description": "Незаконное пересечение Гос. границы РФ"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 215,
+    "fields": {
+      "number": "323",
+      "description": "Противоправное изменение Гос. границы РФ"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 216,
+    "fields": {
+      "number": "324",
+      "description": "Приобретение или сбыт офиц. док-тов и гос. наград"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 217,
+    "fields": {
+      "number": "325",
+      "description": "Похищение или поврежд. док-тов, штампов, печатей либо похищение марок акциз. сбора, спец. марок и знаков соотв-я"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 218,
+    "fields": {
+      "number": "326",
+      "description": "Подделка или уничтожение идентификационного номера трансп. средства"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 219,
+    "fields": {
+      "number": "327",
+      "description": "Подделка, изгот. или сбыт поддельных док-тов, гос. наград, штампов, печатей, бланков"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 220,
+    "fields": {
+      "number": "328",
+      "description": "Уклонениие от прохождения военной и альтернативной гражданской службы"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 221,
+    "fields": {
+      "number": "329",
+      "description": "Надругательство над Гос. гербом РФ или Гос. флагом РФ"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 222,
+    "fields": {
+      "number": "330",
+      "description": "Самоуправство"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 223,
+    "fields": {
+      "number": "332",
+      "description": "Неисполнение приказа"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 224,
+    "fields": {
+      "number": "333",
+      "description": "Сопротивление начальнику или принужд. его к нарушению обязан-тей военной службы"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 225,
+    "fields": {
+      "number": "334",
+      "description": "Насильственные действия в отн-и начальника"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 226,
+    "fields": {
+      "number": "335",
+      "description": "Нарушение уставных правил взаимоотн-й между военнослужащими при отсутств. между ними отн-ий подчиненности"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 227,
+    "fields": {
+      "number": "336",
+      "description": "Оскорбление военнослужащего"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 228,
+    "fields": {
+      "number": "337",
+      "description": "Самовольное оставление части или места службы"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 229,
+    "fields": {
+      "number": "338",
+      "description": "Дезертирство"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 230,
+    "fields": {
+      "number": "339",
+      "description": "Уклонение от исп. обязанностей военной службы путем симуляции болезни или иными способами"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 231,
+    "fields": {
+      "number": "340",
+      "description": "Нарушение правил несения боевого дежурства"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 232,
+    "fields": {
+      "number": "341",
+      "description": "Нарушение правил несения пограничной службы"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 233,
+    "fields": {
+      "number": "342",
+      "description": "Нарушение уставных правил караульной службы"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 234,
+    "fields": {
+      "number": "343",
+      "description": "Нарушение правил несения службы по охране общественного порядка и обеспеч. общ. безопасности"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 235,
+    "fields": {
+      "number": "344",
+      "description": "Нарушение уставных правил несения внутр. службы и патрул-я в гарнизоне"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 236,
+    "fields": {
+      "number": "345",
+      "description": "Оставление погибающего военного корабля"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 237,
+    "fields": {
+      "number": "346",
+      "description": "Умыш. уничтожение или повреждение воен. им-ва"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 238,
+    "fields": {
+      "number": "347",
+      "description": "Уничтожение или повреждение воен. им-ва по неосторожности"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 239,
+    "fields": {
+      "number": "348",
+      "description": "Утрата военного им-ва"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 240,
+    "fields": {
+      "number": "349",
+      "description": "Нарушение правил обращения с оружием и предметами, предст. повышенную опасность для окружающих"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 241,
+    "fields": {
+      "number": "350",
+      "description": "Нарушение правил вождения и эксплуатации машин"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 242,
+    "fields": {
+      "number": "351",
+      "description": "Нарушение правил полетов или подготовки к ним"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 243,
+    "fields": {
+      "number": "352",
+      "description": "Нарушение правил кораблевождения"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 244,
+    "fields": {
+      "number": "353",
+      "description": "Планирование, подготовка, развязывание или ведение агрессивной войны"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 245,
+    "fields": {
+      "number": "354",
+      "description": "Публичные призывы к развязыванию агрессивной войны"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 246,
+    "fields": {
+      "number": "355",
+      "description": "Разработка, пр-во, накопление, приобретение или сбыт оружия массового поражения"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 247,
+    "fields": {
+      "number": "356",
+      "description": "Применение запрещенных средств и методов ведения войны"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 248,
+    "fields": {
+      "number": "357",
+      "description": "Геноцид"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 249,
+    "fields": {
+      "number": "358",
+      "description": "Экоцид"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 250,
+    "fields": {
+      "number": "359",
+      "description": "Наемничество"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 251,
+    "fields": {
+      "number": "360",
+      "description": "Нападение на лиц или учреждения, которые пользуются международной защитой"
+    }
+  },
+  {
+    "model": "research.CriminalArticles",
+    "pk": 252,
+    "fields": {
+      "number": "",
+      "description": "Статья отсутствует"
+    }
+  }
+]

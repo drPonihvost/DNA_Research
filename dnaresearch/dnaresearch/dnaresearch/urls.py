@@ -14,13 +14,16 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from functools import partial as curry
 from django.urls import path, include
+from django.views.generic import TemplateView
+from django.views.defaults import server_error, page_not_found, permission_denied
 
-from research.views import *
+from research import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('research.urls')),
+    path('', TemplateView.as_view(template_name='home.html'), name='home'),
+    path('research/', include('research.urls')),
+    path('users/', include('users.urls')),
 ]
-
-handler404 = pageNotFound

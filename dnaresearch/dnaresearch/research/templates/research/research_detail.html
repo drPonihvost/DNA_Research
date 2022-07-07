@@ -1,0 +1,123 @@
+{% extends 'research/base_research.html' %}
+{% load research_tags %}
+{% block title %}Направление{% endblock %}
+{% block command %}
+<a class="btn btn-primary" href="{% url 'research_update_form' research_id=object.id %}" role="button">Изменить</a>
+<a class="btn btn-primary mx-2" href="{{ object.get_export_url }}" role="button">Экспорт</a>
+<a type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#DeleteModal">Удалить</a>
+<!-- Modal -->
+<div class="modal fade" id="DeleteModal" tabindex="-1" aria-labelledby="DeleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="DeleteModalLabel">Удалить направление</h5>
+            <button type="button" class="btn btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            Удаление направления так же удалит и данные всех связанных лиц. Продолжить?
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+            <form action="{% url 'research_delete' object.id %}" method="POST">
+                {% csrf_token %}
+                <button class="btn btn-primary">Удалить</button>
+            </form>
+        </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block content %}
+<div class="container-xxl mt-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header text-primary">
+                    <h5 class="card-title">Статус</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12 col-md-4">
+                            <h5>Дата поступления:</h5>
+                            <h6>{{ object.date_of_record }}</h6>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <h5>Регистрация:</h5>
+                            {% if object.reg_number %}
+                            <h6>{{ object.reg_number }} от {{ object.reg_date }}</h6>
+                            {% else %}
+                            <h6 class="text-warning">Не зарегистрировано</h6>
+                            {% endif  %}
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <h5>Количество образцов:</h5>
+                            <a href="{{ object.get_url_for_persons }}">
+                                <h6 >{% get_person_count research_id=object.id %}</h6>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row row-cols-1 row-cols-md-2 my-4">
+        <div class="col">
+            <div class="card h-100">
+                <div class="card-header">
+                    <h5 class="card-title text-primary">Инициатор</h5>
+                </div>
+                <div class="card-body text-wrap">
+                    <h5>{{ object.initiator_post }} {{ object.initiator_department }}</h5>
+                    <h6>{{ object.initiator_rank }}</h6>
+                    <h5>{{ research.initiator_name.0|upper }}.{{ research.initiator_patronymic.0|upper }}. {{ research.initiator_surname|title }}</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100">
+                <div class="card-header">
+                    <h5 class="card-title text-primary">Исполнитель</h5>
+                </div>
+                <div class="card-body text-wrap">
+                    <h5>{{ object.executor_post }} {{ object.executor_department }}</h5>
+                    <h6>{{ object.executor_rank }}</h6>
+                    <h5>{{ research.executor_name.0|upper }}.{{ research.executor_patronymic.0|upper }}. {{ research.executor_surname|title }}</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title text-primary">Информация о событии</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            <h5>Основание:</h5>
+                            <h6>{{ object.event_number }}</h6>
+                            <h6> от {{ object.formation_date|date:"d.m.Y" }}</h6>
+                            <h5>ст. УК РФ: {{ object.article }}</h5>
+                            <h5>Родственный поиск: 
+                                {% if object.relative_search %}
+                                Да
+                                {% else %}
+                                Нет
+                                {% endif %}</h5>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <h5>Происшествие:</h5>
+                            <h6>{{ object.plot }}</h6>
+                            <h5>Дата происшествия:</h5>
+                            <h6>{{ object.incident_date }}</h6>
+                            <h5>Место происшествия:</h5>
+                            <h6>{{ object.address }}</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,121 @@
+{% extends 'research/base_research.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container-xxl mt-4">
+   <button type="button" class="btn btn-primary" id="qr-button">Заполнить из QR</button>
+   <form action="{{ path }}" method="post" id="research-form">
+      {% csrf_token %}
+      <div class="row row-cols-1 row-cols-md-2 my-4">
+         <div class="col">
+            <div class="card h-100">
+               <div class="card-header">
+                  <h5 class="card-title text-primary">Инициатор</h5>
+               </div>
+               <div class="mb-3 p-2">
+                  {{ form.initiator_post.errors }}
+                  {{ form.initiator_post }}
+                  {{ form.initiator_department.errors }}
+                  {{ form.initiator_department }}
+                  {{ form.initiator_rank.errors }}
+                  {{ form.initiator_rank }}
+                  <div class="input-group">
+                     {{ form.initiator_surname.errors }}
+                     {{ form.initiator_surname }}
+                     {{ form.initiator_name.errors }}
+                     {{ form.initiator_name }}
+                     {{ form.initiator_patronymic.errors }}
+                     {{ form.initiator_patronymic }}
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="col">
+            <div class="card h-100">
+               <div class="card-header">
+                  <h5 class="card-title text-primary">Исполнитель</h5>
+               </div>
+               <div class="mb-3 p-2">
+                  {{ form.executor_post.errors }}
+                  {{ form.executor_post}}
+                  {{ form.executor_department.errors }}
+                  {{ form.executor_department}}
+                  {{ form.executor_rank.errors}}
+                  {{ form.executor_rank}}
+                  <div class="input-group">
+                     {{ form.executor_surname.errors}}
+                     {{ form.executor_surname}}
+                     {{ form.executor_name.errors}}
+                     {{ form.executor_name}}
+                     {{ form.executor_patronymic.errors}}
+                     {{ form.executor_patronymic}}
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="row mb-4">
+         <div class="col-12">
+            <div class="card">
+               <div class="card-header">
+                  <h5 class="card-title text-primary">Информация о событии</h5>
+               </div>
+               <div class="card-body">
+                  <div class="row">
+                     <div class="col-12 col-md-6">
+                        {{ form.event_number.errors }}
+                        {{ form.event_number }}
+                        {{ form.formation_date.errors }}
+                        {{ form.formation_date }}
+                        {{ form.article.errors }}
+                        {{ form.article }}
+                        {{ form.incident_date.errors }}
+                        {{ form.incident_date }}
+                        {{ form.address.errors }}
+                        {{ form.address }}
+                        <div class="form-check form-switch">
+                           <label class="form-check-label" for="flexSwitchCheckDefault">Родственный поиск</label>
+                           {{ form.relative_search }}
+                        </div>
+                     </div>
+                     <div class="col-12 col-md-6">
+                        {{ form.plot.errors }}
+                        {{ form.plot }}
+                        <div>
+                           <button type="submit" class="btn btn-primary mt-2">Добавить</button>
+                           <a href="{% url 'register' %}" class="btn btn-primary mt-2">Отмена</a>
+                           <button type="reset" class="btn btn-primary mt-2">Очистить</button>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </form>
+   <!-- Такую модалку лучше вынести в шаблон и переиспользовать  -->
+   <div class="modal fade" id="export-modal">
+      <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title">Добавить</h5>
+         </div>
+         <div class="modal-body">
+            <textarea class="form-control mb-2" placeholder="Инициатор" id="export-modal-initiator-textarea" rows="3"></textarea>
+            <textarea class="form-control mb-2" placeholder="Исполнитель" id="export-modal-executor-textarea" rows="3"></textarea>
+            <textarea class="form-control mb-2" placeholder="Событие" id="export-modal-event-textarea" rows="3"></textarea>
+         </div>
+         <div class="modal-footer">
+            <button type="button" id="export-modal-close-button" class="btn btn-secondary">Закрыть</button>
+            <button type="button" id="export-modal-submit-button"class="btn btn-primary">Применить</button>
+         </div>
+      </div>
+      </div>
+   </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'research/js/qr-form-filler.js'%}"></script>
+<script src="{% static 'research/js/research-form.js'%}"></script>
+{% endblock scripts %}

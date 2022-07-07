@@ -1,0 +1,11 @@
+__pycache__
+.idea/
+.idea
+.vscode
+/venv
+export_file.txt
+errors.log
+db.sqlite3
+.env.dev
+.env.prod
+.env.prod.db

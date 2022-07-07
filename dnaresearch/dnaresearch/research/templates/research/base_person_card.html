@@ -1,0 +1,24 @@
+{% extends 'research/base_research.html' %}
+
+{% block content %}
+<div class="container-lg mt4">
+   {% block qr_button %}{% endblock qr_button %}
+   <div class="row">
+      <div class="col-12">
+         <div class="card mt-3">
+            <div class="card-header text-primary">
+               <h5 class="card-title">
+                  Персональные данные
+               </h5>
+            </div>
+            <div class="card-body">
+               <div class="row">
+                  {% block person_card_body %}
+                  {% endblock person_card_body %}
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,9 @@
+asgiref==3.5.0
+backports.zoneinfo==0.2.1
+Django==4.0.4
+django-phonenumber-field==6.1.0
+gunicorn==20.1.0
+phonenumbers==8.12.48
+psycopg2-binary==2.9.1
+sqlparse==0.4.2
+tzdata==2022.1

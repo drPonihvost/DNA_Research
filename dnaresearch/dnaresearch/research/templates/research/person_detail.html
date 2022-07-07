@@ -1,0 +1,48 @@
+{% extends 'research/base_person_card.html' %}
+{% load research_tags %}
+{% block title %}{{ object.surname|title }} {{ object.name.0|upper }}.{{ object.patronymic.0|upper }}.{% endblock %}
+{% block command %}
+<a href="{{ object.get_url_for_update }}" class="btn btn-primary">Изменить</a>
+<a type="button" class="btn btn-danger mx-2" data-bs-toggle="modal" data-bs-target="#DeleteModal">Удалить</a>
+<!-- Modal -->
+<div class="modal fade" id="DeleteModal" tabindex="-1" aria-labelledby="DeleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="DeleteModalLabel">Удалить лицо</h5>
+            <button type="button" class="btn btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            Лицо направленное на проверку будет удалено. Продолжить?
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+            <form action="{{ object.get_url_for_delete }}" method="POST">
+                {% csrf_token %}
+                <button class="btn btn-primary">Удалить</button>
+            </form>
+        </div>
+    </div>
+    </div>
+</div>
+{% endblock %}
+{% block person_card_body %}
+<div class="col-12">
+    <h5>Фамилия:</h5>
+    <h6>{{ object.surname }}</h6>
+    <h5>Имя:</h5>
+    <h6>{{ object.name }}</h6>
+    <h5>Отчество:</h5>
+    <h6>{{ object.patronymic }}</h6>
+    <h5>Пол:</h5>
+    <h6>{{ object.gender }}</h6>
+    <h5>Дата рождения:</h5>
+    <h6>{{ object.birthday }}</h6>
+    <h5>Место рождения:</h5>
+    <h6>{{ object.birthplace }}</h6>
+    {% if object.research.relative_search %}
+    <h5>Степень родства:</h5>
+    <h6>{{ object.relation }}</h6>
+    {% endif %}
+</div>
+{% endblock person_card_body %}
